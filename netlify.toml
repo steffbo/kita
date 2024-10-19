@@ -1,0 +1,9 @@
+[build]
+command = "bundle exec jekyll build"
+publish = "_site"
+
+[build.environment]
+RUBY_VERSION = "3.3.5"
+
+[[plugins]]
+package = "netlify-plugin-bundle-install"
