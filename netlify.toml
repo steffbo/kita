@@ -4,3 +4,9 @@ publish = "_site"
 
 [build.environment]
 RUBY_VERSION = "3.3.5"
+
+[redirects]
+from = "https://kitaproofofconcept.netlify.app/*"
+to = "https://kita.remer.cc/:splat"
+status = 301
+force = true
