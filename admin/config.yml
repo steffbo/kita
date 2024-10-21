@@ -2,26 +2,22 @@ backend:
   name: git-gateway
   repo: steffbo/kita
   branch: main
-  #base_url: https://api.netlify.com
-  #auth_endpoint: auth
 
-#site_url: https://kita.remer.cc
-#display_url: https://kita.remer.cc
-
-media_folder: "assets/uploads"
-public_folder: "/assets/uploads"
+media_folder: 'assets/uploads'
+public_folder: '/assets/uploads'
 
 collections:
   - name: 'index'
     label: 'Home'
     delete: false
     files:
-      - name: "index"
-        label: "Home"
-        file: "index.md"
+      - name: 'index'
+        label: 'Home'
+        file: 'index.md'
         fields:
-          - { label: Title, name: title, widget: string }
-          - {  label: Intro, name: intro, widget: markdown }
+          - { label: 'Layout', name: 'layout', widget: 'hidden', default: 'page' }
+          - { label: 'Title', name: 'title', widget: 'string' }
+          - { label: 'Inhalt', name: 'body', widget: 'markdown' }
   - name: 'pages'
     label: 'Pages'
     folder: '_pages/'
@@ -34,13 +30,13 @@ collections:
       - { label: 'Titel', name: 'title', widget: 'string' }
       - { label: 'Link', name: 'permalink', widget: 'string' }
       - { label: 'Inhalt', name: 'body', widget: 'markdown' }
-  - name: "blog"
-    label: "Blog"
-    folder: "_posts"
+  - name: 'blog'
+    label: 'Blog'
+    folder: '_posts'
     create: true
-    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    slug: '{{year}}-{{month}}-{{day}}-{{slug}}'
     fields:
-      - {label: "Layout", name: "layout", widget: "hidden", default: "post"}
-      - {label: "Titel", name: "title", widget: "string"}
-      - {label: "Veröffentlichungsdatum", name: "date", widget: "datetime"}
-      - {label: "Inhalt", name: "body", widget: "markdown"}
+      - {label: 'Layout', name: 'layout', widget: 'hidden', default: 'post'}
+      - {label: 'Titel', name: 'title', widget: 'string'}
+      - {label: 'Veröffentlichungsdatum', name: 'date', widget: 'datetime'}
+      - {label: 'Inhalt', name: 'body', widget: 'markdown'}
