@@ -22,7 +22,9 @@ baseurl: "" # the subpath of your site, e.g. /blog
 url: "" # the base hostname & protocol for your site, e.g. http://example.com
 
 header_pages: # what to show in the navigation
-  - _pages/about.md
+  - _pages/paedagogischer-ansatz.md
+  - _pages/unser-team.md
+  - _pages/vereinsleben.md
   - _pages/imprint.md
 
 # Build settings
