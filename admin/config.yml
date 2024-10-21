@@ -14,12 +14,14 @@ public_folder: "/assets/uploads"
 collections:
   - name: 'index'
     label: 'Home'
-    files:
-      - { label: 'Home', name: 'index', file: 'index.md' }
     delete: false
-    fields:
-      - { label: 'Layout', name: 'layout', widget: 'hidden', default: 'home' }
-      - { label: 'Content', name: 'body', widget: 'markdown' }
+    files:
+      - name: "index"
+        label: "Home"
+        file: "index.md"
+        fields:
+          - { label: Title, name: title, widget: string }
+          - {  label: Intro, name: intro, widget: markdown }
   - name: 'pages'
     label: 'Pages'
     folder: '_pages/'
