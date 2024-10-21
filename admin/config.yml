@@ -1,12 +1,12 @@
 backend:
-  name: github
+  name: git-gateway
   repo: steffbo/kita
   branch: main
-  base_url: https://api.netlify.com
-  auth_endpoint: auth
+  #base_url: https://api.netlify.com
+  #auth_endpoint: auth
 
-site_url: https://kita.remer.cc
-display_url: https://kita.remer.cc
+#site_url: https://kita.remer.cc
+#display_url: https://kita.remer.cc
 
 media_folder: "assets/uploads"
 public_folder: "/assets/uploads"
