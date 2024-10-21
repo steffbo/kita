@@ -2,13 +2,15 @@ backend:
   name: github
   repo: steffbo/kita
   branch: main
+  base_url: https://api.netlify.com
+  auth_endpoint: auth
 
-media_folder: "assets/images"
-public_folder: "/assets/images"
+media_folder: "assets/uploads"
+public_folder: "/assets/uploads"
 
 collections:
-  - name: "kita"
-    label: "Knirpsenstadt"
+  - name: "blog"
+    label: "Blog"
     folder: "_posts"
     create: true
     slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
@@ -17,3 +19,15 @@ collections:
       - {label: "Titel", name: "title", widget: "string"}
       - {label: "Veröffentlichungsdatum", name: "date", widget: "datetime"}
       - {label: "Inhalt", name: "body", widget: "markdown"}
+  - name: 'pages'
+    label: 'Pages'
+    folder: '_pages/'
+    create: true
+    slug: '{{slug}}'
+    editor:
+      preview: false
+    fields:
+      - { label: 'Layout', name: 'layout', widget: 'hidden', default: 'page' }
+      - { label: 'Titel', name: 'title', widget: 'string' }
+      - { label: 'Link', name: 'permalink', widget: 'string' }
+      - { label: 'Inhalt', name: 'body', widget: 'markdown' }
