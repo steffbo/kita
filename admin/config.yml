@@ -10,6 +10,8 @@ collections:
   - name: 'index'
     label: 'Home'
     delete: false
+    editor:
+      preview: false
     files:
       - name: 'index'
         label: 'Home'
@@ -35,6 +37,8 @@ collections:
     folder: '_posts'
     create: true
     slug: '{{year}}-{{month}}-{{day}}-{{slug}}'
+    editor:
+      preview: false
     fields:
       - {label: 'Layout', name: 'layout', widget: 'hidden', default: 'post'}
       - {label: 'Titel', name: 'title', widget: 'string'}
