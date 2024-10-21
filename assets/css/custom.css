@@ -1,0 +1,32 @@
+body, html {
+  background-color: #DAEFB4;
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+.site-header {
+  /* Das Bild für den Hintergrund */
+  background-image: url('../img/draussen.jpg');
+
+  /* Höhe des Headers */
+  min-height: 500px;
+
+  /* Parallax-Effekt */
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.content {
+  position: relative;
+  background-color: rgba(255, 255, 255, 0.8); /* Leicht transparenter Hintergrund für den Inhalt */
+  padding: 20px;
+}
+
+@media only screen and (max-device-width: 768px) {
+  .site-header {
+    background-attachment: scroll; /* Deaktiviert den Parallax-Effekt auf mobilen Geräten */
+  }
+}

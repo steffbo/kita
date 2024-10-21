@@ -321,6 +321,7 @@ PLATFORMS
 
 DEPENDENCIES
   github-pages
+  minima
 
 RUBY VERSION
    ruby 3.3.5p100
