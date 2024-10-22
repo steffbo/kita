@@ -19,6 +19,3 @@ https://app.netlify.com/sites/kitaproofofconcept/configuration/identity#users
 
 ## Run local
 `bundle exec jekyll serve`
-
-### Theme adjustments
-* header navigation doesn't show Home
