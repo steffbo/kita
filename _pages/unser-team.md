@@ -2,6 +2,7 @@
 layout: page
 title: Unser Team
 permalink: /team/
+menu-order: 2
 ---
 Wir ErzieherInnen betrachten uns als Lehrende und Lernende zugleich. In der Regel begleiten wir das Kind von der Aufnahme in der Kita bis zum Schuleintritt. Wir richten unsere pädagogische Arbeit nach den Bedürfnissen der Kinder aus. Durch differenzierte Beobachtung entdecken wir die individuellen Interessenlagen, sowie besondere Fähigkeiten der Kinder.
 

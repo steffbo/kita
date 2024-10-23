@@ -18,22 +18,10 @@ title: Kita Knirpsenstadt
 description: >- # this means to ignore newlines until "baseurl:"
   Elternverein Knirpsenstadt e.V.
 
-#header_pages: # what to show in the navigation
-#  - _pages/paedagogischer-ansatz.md
-#  - _pages/unser-team.md
-#  - _pages/vereinsleben.md
-
-navbar-links:
-  Pad: "paedagogischer-ansatz"
-  Team: "team"
-  Verein: "vereinsleben"
-
 # Build settings
 #theme: minima
 theme: beautiful-jekyll-theme
 avatar: "/assets/img/logo.jpg"
-#plugins:
-#  - jekyll-feed
 
 # Default layout
 defaults:

@@ -19,3 +19,6 @@ https://app.netlify.com/sites/kitaproofofconcept/configuration/identity#users
 
 ## Run local
 `bundle exec jekyll serve`
+
+## See theme default files
+`bundle show beautiful-jekyll`

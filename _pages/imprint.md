@@ -2,6 +2,7 @@
 layout: page
 title: Impressum & Kontakt
 permalink: /impressum/
+menu-order: -1
 ---
 ### Betreiber & Kontakt
 

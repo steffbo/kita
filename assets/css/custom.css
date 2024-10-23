@@ -5,6 +5,10 @@ body, html {
   height: 100%;
 }
 
+.navbar-custom {
+    background-color: #DAEFB4;
+}
+
 .site-header {
   /* Das Bild für den Hintergrund */
   background-image: url('../img/draussen.jpg');
