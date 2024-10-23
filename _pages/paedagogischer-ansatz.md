@@ -2,7 +2,7 @@
 layout: page
 title: Pädagogischer Ansatz
 permalink: /paedagogischer-ansatz/
-menu-order: 5
+menu-order: 1
 ---
 Unsere pädagogische Arbeit beruht auf dem Situationsansatz, d.h. unsere Kinder lernen in Realsituationen und Sinnzusammenhängen. Die Tagesgestaltung ist dadurch flexibel und nach den Bedürfnissen und Wünschen der Kinder ausgerichtet.
 
