@@ -31,8 +31,10 @@ defaults:
     values:
       layout: "default"
 
+site-css:
+  - /assets/css/custom.css
+
 include:
-  - assets/css/custom.css
   - _pages
 
 # Exclude from processing.

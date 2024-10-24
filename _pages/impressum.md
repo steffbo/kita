@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Impressum & Kontakt
+title: Kontakt & Impressum
 permalink: /impressum/
 menu-order: -1
 ---
