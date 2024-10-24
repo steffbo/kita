@@ -16,7 +16,12 @@
             {% assign pages_list = site.pages | where_exp: "page", "page.path contains '_pages'" | where_exp: "page", "page.menu-order >= 0" | sort: "menu-order" %}
             {% for page in pages_list %}
             <li class="nav-item">
-                <a class="nav-link" href="{{ page.url }}">{{ page.title }}</a>
+                <a class="nav-link" href="{{ page.url }}">
+                    {{ page.title }}
+                    {%- if page.show-badge -%}
+                    <sup> 🔴</sup>
+                    {%- endif -%}
+                </a>
             </li>
             {% endfor %}
 

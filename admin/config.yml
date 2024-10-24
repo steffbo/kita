@@ -31,8 +31,9 @@ collections:
       - { label: 'Layout', name: 'layout', widget: 'hidden', default: 'page' }
       - { label: 'Titel', name: 'title', widget: 'string' }
       - { label: 'Link', name: 'permalink', widget: 'string' }
-      - { label: 'Inhalt', name: 'body', widget: 'markdown' }
+      - { label: 'Badge', name: 'show-badge', widget: 'boolean' }
       - { label: 'Reihenfolge im Menu', name: 'menu-order', widget: 'number' }
+      - { label: 'Inhalt', name: 'body', widget: 'markdown' }
   - name: 'blog'
     label: 'Blog'
     folder: '_posts'

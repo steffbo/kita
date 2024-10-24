@@ -3,6 +3,7 @@ layout: page
 title: Offene Stellen
 permalink: stellen
 menu-order: 4
+show-badge: true
 ---
 **Staatlich anerkannter Erzieher (m/w/d)**
 

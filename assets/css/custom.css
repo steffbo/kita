@@ -15,14 +15,14 @@ h2 {
   font-size: 1.5rem;
 }
 
-.site-header {
-  background-image: url('../img/draussen.jpg');
-  min-height: 500px;
-  background-attachment: fixed;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-}
+/*.site-header {*/
+/*  background-image: url('../img/draussen.jpg');*/
+/*  min-height: 500px;*/
+/*  background-attachment: fixed;*/
+/*  background-position: center;*/
+/*  background-repeat: no-repeat;*/
+/*  background-size: cover;*/
+/*}*/
 
 /*.content {*/
 /*  position: relative;*/
