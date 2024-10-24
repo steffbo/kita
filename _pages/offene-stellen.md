@@ -2,8 +2,8 @@
 layout: page
 title: Offene Stellen
 permalink: stellen
+show-badge: false
 menu-order: 4
-show-badge: true
 ---
 **Staatlich anerkannter Erzieher (m/w/d)**
 
@@ -12,12 +12,16 @@ Zu Ihren Aufgaben zählen:\
 ➢ Beobachtung und Dokumentation der Entwicklungsprozesse der Kinder\
 ➢ Vertrauensvolle Zusammenarbeit mit den Eltern\
 ➢ Organisation von Arbeits- und Spielmaterialien\
-➢ Mitarbeit und Durchführung von Projekten\
+➢ Mitarbeit und Durchführung von Projekten
+
+\
 Wir wünschen uns von unserem neuen Teammitglied:\
 ➢ eine abgeschlossene Ausbildung als Erzieher (m/w/d)\
 ➢ einen liebevollen und einfühlsamen Umgang mit den Kindern\
 ➢ Engagement und Teamfähigkeit\
-➢ selbstständiges Arbeiten und Naturverbundenheit\
+➢ selbstständiges Arbeiten und Naturverbundenheit
+
+\
 Wir bieten Ihnen:\
 ➢ einen Einstiegsbonus in Höhe von 2.000 Euro\
 ➢ eine attraktive Bezahlung in Anlehnung an den TVöD inkl. Weihnachtsgeld und Sonderzahlungen\
@@ -29,6 +33,8 @@ zählen können\
 ➢ qualifizierte Weiterbildungsmaßnahmen\
 ➢ eine sehr gute Anbindung an die Öffentlichen Verkehrsmittel (S2 Bahnhof Röntgental in 3 Min. Fußweg)\
 ➢ Verpflegung mit frischer, regionaler Kost aus unserer eigenen Küche
+
+
 
 Die Stelle ist unbefristet.
 Wenn Sie unser sympathisches Team verstärken wollen, senden Sie Ihre Bewerbungsunterlagen bitte
