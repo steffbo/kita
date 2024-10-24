@@ -11,14 +11,20 @@ https://app.netlify.com/sites/kitaproofofconcept/configuration/identity#users
 ## Stack
 * Jekyll for static site generation
 * Github for storage
-* Netlify for hosting
+* Netlify for hosting and user management
 * DNS settings on https://freedns.afraid.org/
 
 ## Update settings
-`bundle install`
+```bash
+bundle install
+```
 
 ## Run local
-`bundle exec jekyll serve`
+```bash
+bundle exec jekyll serve
+```
 
 ## See theme default files
-`bundle show beautiful-jekyll`
+```bash
+bundle show beautiful-jekyll
+```
