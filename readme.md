@@ -6,7 +6,10 @@
 Stefan Remer, member of the board of Knirpsenstadt e.V.
 
 ## Adding new people for editing
-https://app.netlify.com/sites/kitaproofofconcept/configuration/identity#users
+[Netlify Identity](https://app.netlify.com/sites/kitaproofofconcept/configuration/identity#users)
+
+## Analytics
+[Simple analytics](https://dashboard.simpleanalytics.com/kita.remer.cc)
 
 ## Stack
 * Jekyll for static site generation

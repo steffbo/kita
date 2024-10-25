@@ -2,17 +2,31 @@
     background-color: #DAEFB4 !important;
 }
 
-footer {
-  background-color: #DAEFB4;
-  padding: 0.25em;
-}
-
 .intro-header .page-heading h1 {
   font-size: 2rem;
 }
 
 h2 {
   font-size: 1.5rem;
+}
+
+.container-md {
+  padding-bottom: 100px; /* Footer height */
+}
+
+/* Sticky footer */
+footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 100px;
+  background-color: #DAEFB4;
+  padding: 0;
+}
+
+footer p {
+  margin: 1rem 0;
 }
 
 /*.site-header {*/
