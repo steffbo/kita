@@ -1,0 +1,21 @@
+<div class="carousel">
+    <input type="radio" name="carousel" id="slide1" checked style="--slide-index: 0;">
+    <input type="radio" name="carousel" id="slide2" style="--slide-index: 1;">
+    <input type="radio" name="carousel" id="slide3" style="--slide-index: 2;">
+    <input type="radio" name="carousel" id="slide4" style="--slide-index: 3;">
+    <input type="radio" name="carousel" id="slide5" style="--slide-index: 4;">
+
+    <div class="carousel-slides">
+        {% for item in site.carousels[0].images %}
+        <div class="carousel-slide"><img src="{{ item.image }}" width="500px"></div>
+        {% endfor %}
+    </div>
+
+    <div class="carousel-dots">
+        <label for="slide1" class="carousel-dot"></label>
+        <label for="slide2" class="carousel-dot"></label>
+        <label for="slide3" class="carousel-dot"></label>
+        <label for="slide4" class="carousel-dot"></label>
+        <label for="slide5" class="carousel-dot"></label>
+    </div>
+</div>

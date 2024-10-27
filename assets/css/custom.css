@@ -10,8 +10,12 @@ h2 {
   font-size: 1.5rem;
 }
 
+header .container-md {
+  padding-bottom: 10px; /* Footer height */
+}
+
 .container-md {
-  padding-bottom: 100px; /* Footer height */
+  padding-bottom: 50px; /* Footer height */
 }
 
 /* Sticky footer */
@@ -20,32 +24,86 @@ footer {
   bottom: 0;
   left: 0;
   right: 0;
-  height: 100px;
+  height: 50px;
   background-color: #DAEFB4;
   padding: 0;
 }
 
 footer p {
-  margin: 1rem 0;
+  margin: 0;
 }
 
-/*.site-header {*/
-/*  background-image: url('../img/draussen.jpg');*/
-/*  min-height: 500px;*/
-/*  background-attachment: fixed;*/
-/*  background-position: center;*/
-/*  background-repeat: no-repeat;*/
-/*  background-size: cover;*/
-/*}*/
+.carousel {
+  /*width: 100%;*/
+  position: relative;
+  overflow: hidden;
+  border-radius: 10px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+}
 
-/*.content {*/
-/*  position: relative;*/
-/*  background-color: rgba(255, 255, 255, 0.8); !* Leicht transparenter Hintergrund für den Inhalt *!*/
-/*  padding: 20px;*/
-/*}*/
+/* Hide the radio buttons */
+.carousel input {
+  display: none;
+}
 
-/*@media only screen and (max-device-width: 768px) {*/
-/*  .site-header {*/
-/*    background-attachment: scroll; !* Deaktiviert den Parallax-Effekt auf mobilen Geräten *!*/
-/*  }*/
-/*}*/
+/* Carousel Slides */
+.carousel-slides {
+  display: flex;
+  width: 500%;
+  transition: transform 0.5s ease-in-out;
+}
+
+.carousel-slide {
+  width: 20%;
+  flex-shrink: 0;
+}
+
+.carousel-slide img {
+  width: 100%;
+  height: auto;
+}
+
+/* Navigation Dots */
+.carousel-dots {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 8px;
+}
+
+.carousel-dot {
+  width: 12px;
+  height: 12px;
+  background-color: #ddd;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+/* Changed this selector to use ~ instead of + */
+input[id="slide1"]:checked ~ .carousel-slides {
+  transform: translateX(0);
+}
+input[id="slide2"]:checked ~ .carousel-slides {
+  transform: translateX(-20%);
+}
+input[id="slide3"]:checked ~ .carousel-slides {
+  transform: translateX(-40%);
+}
+input[id="slide4"]:checked ~ .carousel-slides {
+  transform: translateX(-60%);
+}
+input[id="slide5"]:checked ~ .carousel-slides {
+  transform: translateX(-80%);
+}
+
+/* Dot Active State */
+input[id="slide1"]:checked ~ .carousel-dots label[for="slide1"],
+input[id="slide2"]:checked ~ .carousel-dots label[for="slide2"],
+input[id="slide3"]:checked ~ .carousel-dots label[for="slide3"],
+input[id="slide4"]:checked ~ .carousel-dots label[for="slide4"],
+input[id="slide5"]:checked ~ .carousel-dots label[for="slide5"] {
+  background-color: #333;
+}

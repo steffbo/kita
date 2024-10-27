@@ -37,6 +37,14 @@ site-css:
 include:
   - _pages
 
+carousels:
+  - images:
+    - image: /assets/img/draussen.jpg
+    - image: /assets/img/draussen2.jpg
+    - image: /assets/img/draussen3.jpg
+    - image: /assets/img/draussen4.jpg
+    - image: /assets/img/draussen5.jpg
+
 # Exclude from processing.
 # The following items will not be processed, by default.
 # Any item listed under the `exclude:` key here will be automatically added to
