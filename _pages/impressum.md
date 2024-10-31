@@ -18,7 +18,7 @@ Mail: knirpsenstadt-panketal@t-online.de
 Vereinsregister: VR 4217 beim Amtsgericht Frankfurt (Oder)\
 Rechtlich verbindliche Aussagen für den Verein trifft allein der Vorstand.
 
-Vertreten durch 1. Vorsitzende: Marion Wrana, 2. Vorsitzende: Annabell Dörkser
+Vertreten durch 1. Vorsitzende: Marion Wrana, 2. Vorsitzende: Annabell Dörksen
 
 Verantwortlicher für journalistisch-redaktionelle Inhalte: Claudia Graff (Stefan Remer)
 
