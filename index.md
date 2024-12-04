@@ -36,8 +36,7 @@ Weitere Details finden Sie unter [Offene Stellen](/stellen)
             Schließzeiten und<br>Brückentage 2025
         </td>
         <td style="padding: 12px; border-bottom: 0">
-            23.12.24 Brückentag<br>
-            27.12.24 - 03.01.25 Weihnachtsferien<br>
+            23.12.24 - 03.01.25 Weihnachtsferien<br>
             07.02.25 Bildungstag<br>
             02.05.25 Brückentag (1. Mai)<br>
             30.05.25 Brückentag (Himmelfahrt)<br>
