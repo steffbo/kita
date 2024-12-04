@@ -38,5 +38,5 @@ zählen können\
 
 Die Stelle ist unbefristet.
 Wenn Sie unser sympathisches Team verstärken wollen, senden Sie Ihre Bewerbungsunterlagen bitte
-bevorzugt per E-Mail an: knirpsenstadt-panketal@t-online.de.\
+bevorzugt per E-Mail an: knirpsenstadt-panketal[at]t-online.de.\
 Ihre Fragen beantwortet gerne Frau Wittkowski unter 030 / 944 61 71.
