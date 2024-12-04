@@ -2,6 +2,7 @@
 layout: page
 title: Kontakt & Impressum
 permalink: /impressum/
+show-badge: false
 menu-order: -1
 ---
 ### Betreiber & Kontakt
@@ -11,7 +12,7 @@ Ahornallee 27\
 16341 Panketal\
 Tel.:  030 9446171\
 Fax:  032 227770160\
-Mail: knirpsenstadt-panketal@t-online.de  
+Mail: knirpsenstadt-panketal\[at]t-online.de  
 
 ### Impressum
 
@@ -20,7 +21,7 @@ Rechtlich verbindliche Aussagen für den Verein trifft allein der Vorstand.
 
 Vertreten durch 1. Vorsitzende: Marion Wrana, 2. Vorsitzende: Annabell Dörksen
 
-Verantwortlicher für journalistisch-redaktionelle Inhalte: Claudia Graff (Stefan Remer)
+Verantwortlicher für journalistisch-redaktionelle Inhalte: Stefan Remer
 
 Haftungshinweis:
 Trotz sorgfältiger inhaltlicher Kontrolle übernehmen wir keine Haftung für die Inhalte externer Links. Für den Inhalt der verlinkten Seiten sind ausschließlich deren Betreiber verantwortlich.
