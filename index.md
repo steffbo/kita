@@ -9,8 +9,6 @@ Unser Haus ist eine sanierte Privatvilla aus den 30er Jahren und wurde 1992 vom 
 
 ## Aktuelle Termine:
 
-* 01.11.2024 🚫 Brückentag
-* 14.11.2024 🕯️ Lichterfest
 * 06.12.2024 🎀 Adventssingen mit den Eltern
 * 13.12.2024 🎄 Kinder Weihnachtsfeier 
 
@@ -35,14 +33,17 @@ Weitere Details finden Sie unter [Offene Stellen](/stellen)
     </tr>
     <tr>
         <td style="padding: 12px; border-right: 1px solid #000; font-weight: bold; vertical-align: top;">
-            Schließzeiten und<br>Brückentage 2024
+            Schließzeiten und<br>Brückentage 2025
         </td>
         <td style="padding: 12px; border-bottom: 0">
-            22.07.-26.07.24 Sommerschließwoche<br>
-            Freitag, 04.10.24 Brückentag<br>
-            Freitag, 01.11.24 Bildungstag Team<br>
-            Montag, 23.12.24 Brückentag<br>
-            27.12.-30.12.24 Weihnachtsferien
+            23.12.24 Brückentag<br>
+            27.12.24 - 03.01.25 Weihnachtsferien<br>
+            07.02.25 Bildungstag<br>
+            02.05.25 Brückentag (1. Mai)<br>
+            30.05.25 Brückentag (Himmelfahrt)<br>
+            28.07.25 - 01.08.25 Sommerschließwoche<br>
+            17.10.25 Bildungstag<br>
+            22.12.25 - 02.01.26 Weihnachtsferien<br>
         </td>
     </tr>
 </table>
