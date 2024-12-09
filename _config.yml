@@ -32,6 +32,7 @@ defaults:
       layout: "default"
       head-extra:
         - netlify-head.html
+        - umami-tracking-head.html
 
 site-css:
   - /assets/css/custom.css
