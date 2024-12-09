@@ -6,16 +6,16 @@
 Stefan Remer, member of the board of Knirpsenstadt e.V.
 
 ## Adding new people for editing
-[Netlify Identity](https://app.netlify.com/sites/kitaproofofconcept/configuration/identity#users)
+[Netlify Identity](https://app.netlify.com/sites/knirpsenstadt/configuration/identity#users)
 
 ## Analytics
-[Simple analytics](https://dashboard.simpleanalytics.com/kita.remer.cc)
+~~[Simple analytics](https://dashboard.simpleanalytics.com/kita.remer.cc)~~
 
 ## Stack
 * Jekyll for static site generation
 * Github for storage
 * Netlify for hosting and user management
-* DNS settings on https://freedns.afraid.org/
+* DNS settings on [Netlify](https://app.netlify.com/teams/stefan-remer/dns/knirpsenstadt.de)
 
 ## Update settings
 ```bash
