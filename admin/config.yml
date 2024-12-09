@@ -30,9 +30,9 @@ collections:
     fields:
       - { label: 'Layout', name: 'layout', widget: 'hidden', default: 'page' }
       - { label: 'Titel', name: 'title', widget: 'string' }
-      - { label: 'Link', name: 'permalink', widget: 'string' }
-      - { label: 'Badge', name: 'show-badge', widget: 'boolean' }
-      - { label: 'Reihenfolge im Menu', name: 'menu-order', widget: 'number' }
+      - { label: 'Link', name: 'permalink', hint: 'Unter diesem Pfad kann die Seite direkt aufgerufen werden', widget: 'string' }
+      - { label: 'Badge', name: 'show-badge', hint: 'Zeigt einen roten Punkt an', widget: 'boolean' }
+      - { label: 'Reihenfolge im Menu', name: 'menu-order', 'Die Einträge im Menu können hiermit sortiert werden. Negative Werte können benutzt werden um die Seite nicht im Menu erscheinen zu lassen.', widget: 'number' }
       - { label: 'Inhalt', name: 'body', widget: 'markdown' }
   - name: 'blog'
     label: 'Blog'
