@@ -48,7 +48,7 @@ Ihre Fragen beantwortet gerne Frau Wittkowski unter 030 / 944 61 71.
 Zu Ihren Aufgaben zählen:\
 ➢ Unterstützung des pädagogischen Teams bei der Betreuung der Kinder\
 ➢ Mithilfe bei der Organisation und Durchführung von Aktivitäten\
-➢ Unterstützung bei der Essensausgabe und der Aufsicht im Innen- und Außenbereich\
+➢ Unterstützung bei der Essensausgabe und der Aufsicht im Innen- und Außenbereich
 
 \
 Wir wünschen uns von unserem neuen Teammitglied:\
