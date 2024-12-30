@@ -9,10 +9,12 @@ Unser Haus ist eine sanierte Privatvilla aus den 30er Jahren und wurde 1992 vom 
 
 ## Stellengesuch:
 
-Zur Verstärkung unseres Teams suchen wir zum nächstmöglichen Zeitpunkt einen\
+Zur Verstärkung unseres Teams suchen wir zum nächstmöglichen Zeitpunkt einen
+
 **Staatlich anerkannten Erzieher (m/w/d) in Teil- oder Vollzeit**\
 und\
-**Erzieher-Aushilfe (m/w/d) auf Minijob-Basis** (auch Rentner sind herzlich willkommen!)\
+**Erzieher-Aushilfe (m/w/d) auf Minijob-Basis** (auch Rentner sind herzlich willkommen!)
+
 Weitere Details finden Sie unter [Offene Stellen](/stellen)
 
 ## Öffnungszeiten:
