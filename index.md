@@ -7,15 +7,12 @@ Unser Haus ist eine sanierte Privatvilla aus den 30er Jahren und wurde 1992 vom 
 
 52 Kinder erleben in drei altersgemischten Gruppen einen harmonisch gestalteten Tagesablauf in familiärer Atmosphäre. Sie sind bei uns Schnecken, Igel oder Schmetterlinge.
 
-## Aktuelle Termine:
-
-* 06.12.2024 🎀 Adventssingen mit den Eltern
-* 13.12.2024 🎄 Kinder Weihnachtsfeier 
-
 ## Stellengesuch:
 
 Zur Verstärkung unseres Teams suchen wir zum nächstmöglichen Zeitpunkt einen\
 **Staatlich anerkannten Erzieher (m/w/d) in Teil- oder Vollzeit**\
+und\
+**Erzieher-Aushilfe (m/w/d) auf Minijob-Basis** (auch Rentner sind herzlich willkommen!)\
 Weitere Details finden Sie unter [Offene Stellen](/stellen)
 
 ## Öffnungszeiten:
