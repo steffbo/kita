@@ -9,13 +9,13 @@ Stefan Remer, member of the board of Knirpsenstadt e.V.
 [Netlify Identity](https://app.netlify.com/sites/knirpsenstadt/configuration/identity#users)
 
 ## Analytics
-~~[Simple analytics](https://dashboard.simpleanalytics.com/kita.remer.cc)~~
+[Umami](https://eu.umami.is/websites/3676f236-6940-4da5-8525-d77fa47468a3)
 
 ## Stack
 * Jekyll for static site generation
 * Github for storage
 * Netlify for hosting and user management
-* DNS settings on [Netlify](https://app.netlify.com/teams/stefan-remer/dns/knirpsenstadt.de)
+* DNS settings on [Netlify](https://app.netlify.com/teams/knirpsenstadt/dns/knirpsenstadt.de)
 
 ## Update settings
 ```bash

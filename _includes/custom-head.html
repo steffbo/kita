@@ -1,1 +1,44 @@
+<!-- Favicon -->
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest">
+
 <link rel="stylesheet" href="{{ "/assets/css/custom.css" | relative_url }}">
+
+<!-- Tiny Slider -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.4/tiny-slider.css"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.4/min/tiny-slider.js" defer></script>
+
+<!-- Styling for the carousel -->
+<style>
+    .slider-wrapper {
+        position: relative;
+        max-width: 800px;
+        margin: 0 auto;
+    }
+    .my-slider {
+        overflow: hidden;
+        position: relative;
+    }
+    /* Dot navigation styles ( .tns-nav ) */
+    .tns-nav {
+        text-align: center;
+        margin: 1rem auto 0;
+        display: flex;
+        justify-content: center;
+        gap: 8px;
+    }
+    .tns-nav button {
+        background-color: #ccc;
+        border: none;
+        border-radius: 50%;
+        width: 12px;
+        height: 12px;
+        cursor: pointer;
+        padding: 0;
+    }
+    .tns-nav button.tns-nav-active {
+        background-color: #444;
+    }
+</style>
