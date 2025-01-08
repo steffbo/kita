@@ -5,9 +5,14 @@ permalink: stellen
 show-badge: true
 menu-order: 4
 ---
-**Staatlich anerkannter Erzieher (m/w/d)**
+### **[Staatlich anerkannter Erzieher (m/w/d)](#erzieher)**
 
-**[zu Erzieher-Aushilfe (m/w/d) auf Minijob-Basis](#aushilfe)**
+### **[Erzieher-Aushilfe (m/w/d) auf Minijob-Basis](#aushilfe)**
+
+<hr>
+
+<a name="erzieher"></a>\
+**Staatlich anerkannter Erzieher (m/w/d)**
 
 Zu Ihren Aufgaben zählen:\
 ➢ Förderung der emotionalen, kognitiven und sozialen Kompetenz der Kinder\
@@ -40,6 +45,8 @@ Die Stelle ist unbefristet.
 Wenn Sie unser sympathisches Team verstärken wollen, senden Sie Ihre Bewerbungsunterlagen bitte
 bevorzugt per E-Mail an: knirpsenstadt-panketal\[at]t-online.de.\
 Ihre Fragen beantwortet gerne Frau Wittkowski unter 030 / 944 61 71.
+
+<hr>
 
 \
 <a name="aushilfe"></a>
