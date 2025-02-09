@@ -6,7 +6,14 @@ publish = "_site"
 RUBY_VERSION = "3.3.6"
 
 [[redirects]]
-from = "https://knirpsenstadt.netlify.app/*"
-to = "https://knirpsenstadt,de/:splat"
-status = 301
-force = true
+  from = "/*"
+  to = "https://knirpsenstadt.de/:splat"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/*"  # Erfasst alle Pfade der Subdomain
+  to = "https://eu.umami.is/websites/3676f236-6940-4da5-8525-d77fa47468a3"
+  status = 301
+  force = true
+  conditions = {Host = "analytics.knirpsenstadt.de"}  # Wichtig: Host-Bedingung!
