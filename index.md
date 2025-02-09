@@ -22,11 +22,12 @@ Weitere Details finden Sie unter [Offene Stellen](/stellen)
 <table style="width: 100%; border-collapse: collapse; font-family: Arial, sans-serif;">
     <tr>
         <td style="padding: 12px; border-bottom: 1px solid #000; border-right: 1px solid #000; width: 40%; font-weight: bold;">
-            Gesamtzeit<br>
+            Gesamtzeit (vorläufig bis zur nächsten Mitgliederversammlung)<br>
             Kernzeit
         </td>
         <td style="padding: 12px; border-bottom: 1px solid #000;">
-            Mo-Fr von 6:00 - 17:30 Uhr<br/>
+            Mo-Do von 6:30 - 16:30 Uhr<br/>
+            Fr von 6:30 - 16:00 Uhr\
             Mo-Fr von 9:00 - 11:30 Uhr
         </td>
     </tr>
@@ -35,8 +36,6 @@ Weitere Details finden Sie unter [Offene Stellen](/stellen)
             Schließzeiten und<br>Brückentage 2025
         </td>
         <td style="padding: 12px; border-bottom: 0">
-            23.12.24 - 03.01.25 Weihnachtsferien<br>
-            07.02.25 Bildungstag<br>
             02.05.25 Brückentag (1. Mai)<br>
             30.05.25 Brückentag (Himmelfahrt)<br>
             28.07.25 - 01.08.25 Sommerschließwoche<br>
