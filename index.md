@@ -23,11 +23,17 @@ Weitere Details finden Sie unter [Offene Stellen](/stellen)
     <tr>
         <td style="padding: 12px; border-bottom: 1px solid #000; border-right: 1px solid #000; width: 40%; font-weight: bold;">
             Gesamtzeit (vorläufig bis zur nächsten Mitgliederversammlung)<br>
-            Kernzeit
         </td>
         <td style="padding: 12px; border-bottom: 1px solid #000;">
             Mo-Do von 6:30 - 16:30 Uhr<br/>
-            Fr von 6:30 - 16:00 Uhr\
+            Fr von 6:30 - 16:00 Uhr<br/>
+        </td>
+    </tr>
+    <tr>
+        <td style="padding: 12px; border-bottom: 1px solid #000; border-right: 1px solid #000; width: 40%; font-weight: bold;">
+            Kernzeit
+        </td>
+        <td style="padding: 12px; border-bottom: 1px solid #000;">
             Mo-Fr von 9:00 - 11:30 Uhr
         </td>
     </tr>
@@ -44,3 +50,5 @@ Weitere Details finden Sie unter [Offene Stellen](/stellen)
         </td>
     </tr>
 </table>
+
+**Achtung:** Für Neuaufnahmen gilt eine Betreuungszeit von 7 - 16 Uhr.
