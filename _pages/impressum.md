@@ -10,9 +10,10 @@ menu-order: -1
 Kita Knirpsenstadt e.V.\
 Ahornallee 27\
 16341 Panketal\
-Tel.:  030 9446171\
-Fax:  032 227770160\
-Mail: knirpsenstadt-panketal\[at]t-online.de  
+Tel.: 030 9446171\
+Fax: 032 227770160\
+Mail Leitung: leitung\[at]knirpsenstadt.de\
+Mail Vorstand: vorstand\[at]knirpsenstadt.de  
 
 ### Impressum
 
