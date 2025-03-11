@@ -1,0 +1,157 @@
+---
+layout: page
+---
+
+<link rel="stylesheet" href="{{ '/assets/css/beitragsrechner.css' | relative_url }}">
+
+<div class="calculator">
+  <div class="form-group">
+    <label for="childAge">Alter des Kindes:</label>
+    <select id="childAge">
+      <option value="krippe">Krippe (unter 3 Jahre)</option>
+      <option value="kindergarten">Kindergarten (ab 3 Jahre)</option>
+    </select>
+  </div>
+
+  <div class="form-group">
+    <label for="netIncome">Jährliches Haushalts-Netto-Einkommen (EUR):</label>
+    <input type="number" id="netIncome" min="20000" value="30000">
+    <div class="info">Minimum 20.000,01 EUR gemäß Beitragsstaffeltabelle</div>
+  </div>
+
+  <div class="form-group">
+    <label for="siblings">Anzahl unterhaltsberechtigter Kinder (inkl. dieses Kind):</label>
+    <select id="siblings">
+      <option value="1">1 Kind</option>
+      <option value="2">2 Kinder</option>
+      <option value="3">3 Kinder</option>
+      <option value="4">4 Kinder</option>
+      <option value="5">5 Kinder</option>
+      <option value="6">6 Kinder</option>
+      <option value="7">7 oder mehr Kinder</option>
+    </select>
+  </div>
+
+  <div class="form-group">
+    <label for="careHours">Wöchentliche Betreuungszeit:</label>
+    <select id="careHours">
+      <option value="30">30 Stunden (6 Tagesstunden)</option>
+      <option value="35">35 Stunden (7 Tagesstunden)</option>
+      <option value="40">40 Stunden (8 Tagesstunden)</option>
+      <option value="45">45 Stunden (9 Tagesstunden)</option>
+      <option value="50">50 Stunden (10 Tagesstunden)</option>
+      <option value="55">55 Stunden (11 Tagesstunden)</option>
+    </select>
+  </div>
+
+  <button id="calculateButton">Platzgeld berechnen</button>
+
+  <div id="resultSection" class="result hidden">
+    <h2>Berechnetes Platzgeld</h2>
+    <div class="amount" id="feeResult">-- EUR</div>
+    <div class="info">Monatlicher Betrag ohne Essengeld</div>
+
+    <div class="total-section">
+      <h3>Gesamtkosten pro Monat</h3>
+      <div class="amount" id="totalCost">-- EUR</div>
+      <div class="info">Inklusive Essensgeld (pauschal 45,40 EUR)</div>
+    </div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const calculateButton = document.getElementById('calculateButton');
+    calculateButton.addEventListener('click', calculateFee);
+
+    // Krippengebühren (jünger als 3 Jahre)
+    const krippeRates = [
+      { income: 20000.01, rates: [55.52, 62.46, 69.40, 76.34, 83.28, 90.22] },
+      { income: 22000, rates: [77.73, 87.44, 97.16, 106.88, 116.59, 126.31] },
+      { income: 25000, rates: [107.25, 120.66, 134.07, 147.48, 160.88, 174.29] },
+      { income: 28000, rates: [141.32, 158.99, 176.65, 194.32, 211.99, 229.65] },
+      { income: 31000, rates: [156.47, 176.02, 195.58, 215.14, 234.70, 254.26] },
+      { income: 34000, rates: [171.61, 193.06, 214.51, 235.96, 257.41, 278.86] },
+      { income: 37000, rates: [186.75, 210.09, 233.44, 256.78, 280.12, 303.47] },
+      { income: 40000, rates: [201.89, 227.13, 252.36, 277.60, 302.84, 328.07] },
+      { income: 43000, rates: [217.03, 244.16, 271.29, 298.42, 325.55, 352.68] },
+      { income: 46000, rates: [232.17, 261.20, 290.22, 319.24, 348.26, 377.28] },
+      { income: 49000, rates: [247.32, 278.23, 309.15, 340.06, 370.97, 401.89] },
+      { income: 52000, rates: [262.46, 295.27, 328.07, 360.88, 393.69, 426.49] },
+      { income: 55000, rates: [277.60, 312.30, 347.00, 381.70, 416.40, 451.10] }
+    ];
+
+    // Kindergartengebühren (ab dem vollendeten 3. Lebensjahr)
+    const kindergartenRates = [
+      { income: 20000.01, rates: [49.28, 55.44, 61.60, 67.76, 73.92, 80.08] },
+      { income: 22000, rates: [68.99, 77.62, 86.24, 94.86, 103.49, 112.11] },
+      { income: 25000, rates: [95.20, 107.10, 119.00, 130.90, 142.80, 154.70] },
+      { income: 28000, rates: [125.44, 141.12, 156.80, 172.48, 188.16, 203.84] },
+      { income: 31000, rates: [138.88, 156.24, 173.60, 190.96, 208.32, 225.68] },
+      { income: 34000, rates: [152.32, 171.36, 190.40, 209.44, 228.48, 247.52] },
+      { income: 37000, rates: [165.76, 186.48, 207.20, 227.92, 248.64, 269.36] },
+      { income: 40000, rates: [179.20, 201.60, 224.00, 246.40, 268.80, 291.20] },
+      { income: 43000, rates: [192.64, 216.72, 240.80, 264.88, 288.96, 313.04] },
+      { income: 46000, rates: [206.08, 231.84, 257.60, 283.36, 309.12, 334.88] },
+      { income: 49000, rates: [219.52, 246.96, 274.40, 301.84, 329.28, 356.72] },
+      { income: 52000, rates: [232.96, 262.08, 291.20, 320.32, 349.44, 378.56] },
+      { income: 55000, rates: [246.40, 277.20, 308.00, 338.80, 369.60, 400.40] }
+    ];
+
+    // Siblings discount factors according to § 16 (3)
+    const siblingDiscounts = {
+      1: 1.00, // No discount for 1 child
+      2: 0.90, // 90% of fee for 2 children
+      3: 0.80, // 80% of fee for 3 children
+      4: 0.65, // 65% of fee for 4 children
+      5: 0.45, // 45% of fee for 5 children
+      6: 0.25, // 25% of fee for 6 children
+      7: 0.00  // No fee for 7 or more children
+    };
+
+    const FOOD_COST = 45.40; // Fixed monthly food cost
+
+    function calculateFee() {
+      const childAge = document.getElementById('childAge').value;
+      const netIncome = parseFloat(document.getElementById('netIncome').value);
+      const siblings = parseInt(document.getElementById('siblings').value);
+      const careHoursStr = document.getElementById('careHours').value;
+      const careHoursIndex = (parseInt(careHoursStr) / 5) - 6; // Convert hours to index (0-5)
+
+      // Validate input
+      if (isNaN(netIncome) || netIncome < 20000.01) {
+        alert('Bitte geben Sie ein gültiges Einkommen von mindestens 20.000,01 EUR ein.');
+        return;
+      }
+
+      // Select the appropriate rate table based on child's age
+      const rateTable = childAge === 'krippe' ? krippeRates : kindergartenRates;
+
+      // Find the applicable income bracket
+      let selectedBracket = rateTable[rateTable.length - 1]; // Default to highest bracket
+
+      for (let i = 0; i < rateTable.length; i++) {
+        if (netIncome >= rateTable[i].income &&
+            (i === rateTable.length - 1 || netIncome < rateTable[i + 1].income)) {
+          selectedBracket = rateTable[i];
+          break;
+        }
+      }
+
+      // Get base fee based on care hours
+      const baseFee = selectedBracket.rates[careHoursIndex];
+
+      // Apply siblings discount
+      const discountFactor = siblingDiscounts[siblings];
+      const finalFee = baseFee * discountFactor;
+
+      // Calculate total cost including food
+      const totalCost = siblings >= 7 ? FOOD_COST : finalFee + FOOD_COST;
+
+      // Display results
+      document.getElementById('feeResult').textContent = finalFee.toFixed(2) + ' EUR';
+      document.getElementById('totalCost').textContent = totalCost.toFixed(2) + ' EUR';
+      document.getElementById('resultSection').classList.remove('hidden');
+    }
+  });
+</script>
