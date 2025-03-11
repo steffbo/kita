@@ -1,16 +1,3 @@
-body {
-  font-family: Arial, sans-serif;
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 20px;
-  line-height: 1.6;
-}
-
-h1 {
-  color: #2c3e50;
-  text-align: center;
-}
-
 .calculator {
   background-color: #f8f9fa;
   border-radius: 8px;
@@ -36,7 +23,7 @@ input, select {
   box-sizing: border-box;
 }
 
-button {
+#calculateButton {
   background-color: #DAEFB4;
   color: black;
   border: none;
@@ -47,7 +34,7 @@ button {
   width: 100%;
 }
 
-button:hover {
+#calculateButton:hover {
   background-color: #C4D89A;
 }
 
