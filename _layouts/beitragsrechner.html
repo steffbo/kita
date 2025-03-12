@@ -90,6 +90,17 @@ layout: page
         childAgeSelect.addEventListener('change', handleChildAgeChange);
         calculateButton.addEventListener('click', calculateFee);
 
+        // Funktion für die formatierte Preisdarstellung
+        function formatPrice(price) {
+            // Prüfen, ob der Preis ein glatter Betrag ist (keine Cents)
+            if (Math.floor(price) === price) {
+                return price.toFixed(0) + ' EUR';
+            } else {
+                // Preis mit Komma und zwei Dezimalstellen anzeigen
+                return price.toFixed(2).replace('.', ',') + ' EUR';
+            }
+        }
+
         // Funktion, die beim Ändern des Alters ausgeführt wird
         function handleChildAgeChange() {
             const isKindergarten = childAgeSelect.value === 'kindergarten';
@@ -101,8 +112,8 @@ layout: page
 
             // Wenn Kindergarten ausgewählt ist, zeige sofort das Ergebnis an
             if (isKindergarten) {
-                feeResult.textContent = '0.00 EUR';
-                totalCost.textContent = '45.40 EUR';  // Nur Essensgeld
+                feeResult.textContent = '0 EUR';
+                totalCost.textContent = '45,40 EUR';  // Nur Essensgeld
                 document.getElementById('feeExplanation').innerHTML = '<strong>Beitragsfrei für Kindergartenkinder:</strong> Für Kinder ab dem vollendeten dritten Lebensjahr fallen keine Betreuungsgebühren an.';
                 entlastungsLink.classList.add('hidden');
                 resultSection.classList.remove('hidden');
@@ -178,8 +189,8 @@ layout: page
 
             // Wenn Kindergarten ausgewählt ist, setze die Gebühr auf 0
             if (childAge === 'kindergarten') {
-                feeResult.textContent = '0.00 EUR';
-                totalCost.textContent = '45.40 EUR';  // Nur Essensgeld
+                feeResult.textContent = '0 EUR';
+                totalCost.textContent = '45,40 EUR';  // Nur Essensgeld
                 document.getElementById('feeExplanation').innerHTML = '<strong>Beitragsfrei für Kindergartenkinder:</strong> Für Kinder ab dem vollendeten dritten Lebensjahr fallen keine Betreuungsgebühren an.';
                 resultSection.classList.remove('hidden');
                 return;
@@ -235,7 +246,7 @@ layout: page
                         }
                     }
 
-                    explanation = `<strong>Begrenzte Elternbeiträge:</strong> Bei einem Jahreshaushaltsnettoeinkommen von ${netIncome.toFixed(2)} Euro und ${careHours} Stunden Betreuungszeit wurde der Höchstbeitrag gemäß der Beitragsstaffel für Einkommensbereich ${selectedBracket.income.toFixed(2)} Euro berechnet.`;
+                    explanation = `<strong>Begrenzte Elternbeiträge:</strong> Bei einem Jahreshaushaltsnettoeinkommen von ${netIncome.toFixed(2).replace('.', ',')} Euro und ${careHours} Stunden Betreuungszeit wurde der Höchstbeitrag gemäß der Beitragsstaffel für Einkommensbereich ${selectedBracket.income.toFixed(2).replace('.', ',')} Euro berechnet.`;
 
                     // Entlastungspaket-Link anzeigen für Krippenkinder mit Einkommen bis 55.000 Euro
                     showEntlastungsLink = true;
@@ -259,7 +270,7 @@ layout: page
                 // Get base fee based on care hours
                 finalFee = selectedBracket.rates[careHoursIndex];
 
-                explanation = `<strong>Regulärer Elternbeitrag:</strong> Bei einem Jahreshaushaltsnettoeinkommen von ${netIncome.toFixed(2)} Euro und ${careHours} Stunden Betreuungszeit wurde der Beitrag gemäß der Beitragsstaffel berechnet.`;
+                explanation = `<strong>Regulärer Elternbeitrag:</strong> Bei einem Jahreshaushaltsnettoeinkommen von ${netIncome.toFixed(2).replace('.', ',')} Euro und ${careHours} Stunden Betreuungszeit wurde der Beitrag gemäß der Beitragsstaffel berechnet.`;
             }
 
             // Apply siblings discount
@@ -279,8 +290,8 @@ layout: page
             const totalCostValue = finalFee + FOOD_COST;
 
             // Display results
-            feeResult.textContent = finalFee.toFixed(2) + ' EUR';
-            document.getElementById('totalCost').textContent = totalCostValue.toFixed(2) + ' EUR';
+            feeResult.textContent = formatPrice(finalFee);
+            document.getElementById('totalCost').textContent = formatPrice(totalCostValue);
             document.getElementById('feeExplanation').innerHTML = explanation;
 
             // Zeige den Entlastungslink an, wenn zutreffend
