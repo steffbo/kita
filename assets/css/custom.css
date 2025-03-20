@@ -10,6 +10,48 @@ h2 {
   font-size: 1.5rem;
 }
 
+/* Section styling */
+.sections-container {
+  width: 100%;
+}
+
+.site-section {
+  padding: 60px 0;
+  width: 100%;
+  position: relative;
+}
+
+.site-section:nth-child(odd) {
+  background-color: #f8f9fa;
+}
+
+.section-title {
+  margin-bottom: 30px;
+}
+
+.section-content {
+  max-width: 800px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1; /* Place content above the background */
+}
+
+.site-section[data-has-bg-image="true"] {
+  color: #000; /* Ensure text is readable */
+}
+
+.section-bg-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-size: cover;
+  background-position: center;
+  opacity: 0.5; /* 50% transparency */
+  z-index: 0;
+}
+
 header .container-md {
   padding-bottom: 10px; /* Footer height */
 }

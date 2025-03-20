@@ -3,7 +3,7 @@ layout: page
 title: Dokumente
 permalink: dokumente
 show-badge: false
-menu-order: 5
+menu-order: 2
 ---
 * [Satzung](/assets/uploads/190327_Satzung_2025.pdf)
 * [Elternbeitragsordnung](/assets/uploads/250101_Elternbeitragsordnung_2025.pdf)

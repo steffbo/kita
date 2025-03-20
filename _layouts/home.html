@@ -6,3 +6,26 @@ layout: page
 
 {{ content }}
 
+<!-- Sections -->
+<div class="sections-container">
+  {% assign sections = site.sections | sort: "order" %}
+  {% for section in sections %}
+  <!-- In _layouts/home.html, modify the section element's styling -->
+  <section class="site-section"
+           id="section-{{ section.slug | default: forloop.index }}"
+           {% if section.background-color %}style="background-color: {{ section.background-color }};"{% endif %}
+           {% if section.background-image %}data-has-bg-image="true" style="position: relative;"{% endif %}>
+
+    {% if section.background-image %}
+    <div class="section-bg-image" style="background-image: url('{{ section.background-image }}');"></div>
+    {% endif %}
+
+    <div class="container">
+      <div class="section-content">
+        <h2 class="section-title">{{ section.title }}</h2>
+        {{ section.content }}
+      </div>
+    </div>
+  </section>
+  {% endfor %}
+</div>

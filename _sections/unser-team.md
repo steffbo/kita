@@ -1,8 +1,8 @@
 ---
-layout: page
 title: Unser Team
-permalink: /team/
-menu-order: 2
+order: 2
+background-color: "#ff0000"
+# background-image: /assets/img/backgrounds/about-bg.jpg
 ---
 Wir ErzieherInnen betrachten uns als Lehrende und Lernende zugleich. In der Regel begleiten wir das Kind von der Aufnahme in der Kita bis zum Schuleintritt. Wir richten unsere pädagogische Arbeit nach den Bedürfnissen der Kinder aus. Durch differenzierte Beobachtung entdecken wir die individuellen Interessenlagen, sowie besondere Fähigkeiten der Kinder.
 
