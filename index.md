@@ -41,4 +41,4 @@ Unser Haus ist eine sanierte Privatvilla aus den 30er Jahren und wurde 1992 vom 
     </tr>
 </table>
 
-**Achtung:** Für Neuaufnahmen gilt eine Betreuungszeit von 6:30 - 16:30 Uhr.
+<!-- **Achtung:** Für Neuaufnahmen gilt eine Betreuungszeit von 6:30 - 16:30 Uhr. -->
