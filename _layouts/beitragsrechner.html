@@ -8,39 +8,45 @@ layout: page
     <div class="form-group">
         <span class="label">Alter des Kindes:</span>
         <div class="inline-options" role="radiogroup" aria-label="Alter des Kindes">
-            <label class="option"><input type="radio" name="childAge" value="krippe" checked> Krippe (unter 3 Jahre)</label>
-            <label class="option"><input type="radio" name="childAge" value="kindergarten"> Kindergarten (ab 3 Jahre)</label>
+            <label class="option"><input type="radio" name="childAge" value="krippe" checked><span>Krippe (unter 3 Jahre)</span></label>
+            <label class="option"><input type="radio" name="childAge" value="kindergarten"><span>Kindergarten (ab 3 Jahre)</span></label>
         </div>
     </div>
 
     <div class="form-group">
         <label for="netIncome">Jährliches Haushalts-Netto-Einkommen (EUR):</label>
         <input type="number" id="netIncome" min="0" value="43795"> <!-- Median 2024 -->
+        <label class="highest-option"><input type="checkbox" id="highestRate"> Höchstsatz
+            <button type="button" class="info-icon" aria-expanded="false" aria-controls="highestRateInfo" title="Setzt den höchsten Beitrag laut Satzung an. Einkommensprüfung entfällt. Geschwisterermäßigung wird berücksichtigt.">i</button>
+            <div id="highestRateInfo" class="info-popover" role="dialog" aria-live="polite" aria-modal="false">
+                Setzt den höchsten Beitrag laut Satzung an. Die Einkommensprüfung entfällt. 
+            </div>
+        </label>
     </div>
 
     <div class="form-group">
         <span class="label">Anzahl unterhaltsberechtigter Kinder (inkl. dieses Kind):</span>
         <div class="inline-options" role="radiogroup" aria-label="Anzahl Kinder">
-            <label class="option"><input type="radio" name="siblings" value="1" checked> 1</label>
-            <label class="option"><input type="radio" name="siblings" value="2"> 2</label>
-            <label class="option"><input type="radio" name="siblings" value="3"> 3</label>
-            <label class="option"><input type="radio" name="siblings" value="4"> 4</label>
-            <label class="option"><input type="radio" name="siblings" value="5"> 5</label>
-            <label class="option"><input type="radio" name="siblings" value="6"> 6</label>
-            <label class="option"><input type="radio" name="siblings" value="7"> 7+</label>
+            <label class="option"><input type="radio" name="siblings" value="1" checked><span>1</span></label>
+            <label class="option"><input type="radio" name="siblings" value="2"><span>2</span></label>
+            <label class="option"><input type="radio" name="siblings" value="3"><span>3</span></label>
+            <label class="option"><input type="radio" name="siblings" value="4"><span>4</span></label>
+            <label class="option"><input type="radio" name="siblings" value="5"><span>5</span></label>
+            <label class="option"><input type="radio" name="siblings" value="6"><span>6</span></label>
+            <label class="option"><input type="radio" name="siblings" value="7"><span>7+</span></label>
         </div>
     </div>
 
     <div class="form-group">
-        <label for="careHours">Wöchentliche Betreuungszeit:</label>
-        <select id="careHours">
-            <option value="30">30 Stunden (6 Tagesstunden)</option>
-            <option value="35">35 Stunden (7 Tagesstunden)</option>
-            <option value="40">40 Stunden (8 Tagesstunden)</option>
-            <option value="45">45 Stunden (9 Tagesstunden)</option>
-            <option value="50">50 Stunden (10 Tagesstunden)</option>
-            <option value="55">55 Stunden (11 Tagesstunden)</option>
-        </select>
+        <span class="label">Wöchentliche Betreuungszeit:</span>
+        <div class="inline-options" role="radiogroup" aria-label="Wöchentliche Betreuungszeit">
+            <label class="option"><input type="radio" name="careHours" value="30" checked><span>30h</span></label>
+            <label class="option"><input type="radio" name="careHours" value="35"><span>35h</span></label>
+            <label class="option"><input type="radio" name="careHours" value="40"><span>40h</span></label>
+            <label class="option"><input type="radio" name="careHours" value="45"><span>45h</span></label>
+            <label class="option"><input type="radio" name="careHours" value="50"><span>50h</span></label>
+            <label class="option"><input type="radio" name="careHours" value="55"><span>55h</span></label>
+        </div>
     </div>
 
     <button id="calculateButton">Platzgeld berechnen</button>

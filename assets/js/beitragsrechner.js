@@ -92,14 +92,18 @@
   // -----------------------------
   // Berechnungskern
   // -----------------------------
-  function calculate({ childAgeType, netIncome, siblingsCount, careHours }) {
+  function calculate({ childAgeType, netIncome, siblingsCount, careHours, highestRate }) {
     // Kindergarten (≥3 Jahre) ist beitragsfrei
     if (childAgeType === 'kindergarten') {
       return {
         fee: 0,
         baseFee: 0,
-      info: `<strong>Beitragsfrei (Alter >= ${META.KIGA_AGE_THRESHOLD} Jahre):</strong> Für Kinder ab ${META.KIGA_AGE_THRESHOLD} Jahren ist die Betreuung in Brandenburg beitragsfrei.`,
-        showEntlastung: false
+        info: '',
+        showEntlastung: false,
+        meta: {
+          rule: `Beitragsfrei (ab ${META.KIGA_AGE_THRESHOLD} Jahren)`,
+          notes: ['Die Betreuung im Kindergartenalter ist in Brandenburg beitragsfrei.']
+        }
       };
     }
 
@@ -109,8 +113,41 @@
       return {
         fee: 0,
         baseFee: 0,
-      info: `<strong>Beitragsfrei (Kinderanzahl >= ${META.SIBLINGS_FREE_THRESHOLD}):</strong> Bei ${siblingsCount} unterhaltsberechtigten Kindern entfällt der Elternbeitrag für Krippenkinder.`,
-        showEntlastung: false
+        info: '',
+        showEntlastung: false,
+        meta: {
+          rule: `Beitragsfrei (≥ ${META.SIBLINGS_FREE_THRESHOLD} Kinder)`,
+          notes: ['Bei 7 oder mehr unterhaltsberechtigten Kindern entfällt der Elternbeitrag.']
+        }
+      };
+    }
+
+    // Höchstsatz freiwillig zahlen (Einkommensprüfung entfällt, Geschwisterrabatt wird berücksichtigt)
+  if (highestRate === true) {
+      const lastRow = feeTableKrippeSatzung[feeTableKrippeSatzung.length - 1];
+      const base = lastRow.rates[hoursToIndex(careHours)] || 0;
+      const discountKey = clamp(siblingsCount, 1, META.MAX_SIBLINGS_FOR_DISCOUNT);
+      const factor = SIBLING_DISCOUNT[discountKey] ?? 1.0;
+      const fee = base * factor;
+
+      let info = `<strong>Höchstsatz gewählt:</strong> Es wird der höchste Beitragssatz gemäß Beitragssatzung angesetzt (Einkommensprüfung entfällt). Basis für ${careHours} Std./Woche: ${formatPrice(base)}.`;
+      if (siblingsCount > 1 && factor < 1) {
+        const percent = (100 - factor * 100).toFixed(0);
+        info += ` <strong>Geschwisterermäßigung berücksichtigt:</strong> Bei ${siblingsCount} Kindern (${percent}% Rabatt) ergibt sich ${formatPrice(fee)}.`;
+      }
+
+      return {
+        fee,
+        baseFee: base,
+        info,
+        showEntlastung: false,
+        meta: {
+          rule: 'Höchstsatz (Satzung U3)',
+          highestRate: true,
+          discountFactor: factor,
+          discountPercent: Math.max(0, Math.round((1 - factor) * 100)),
+          notes: []
+        }
       };
     }
 
@@ -119,8 +156,12 @@
       return {
         fee: 0,
         baseFee: 0,
-      info: `<strong>Beitragsfrei (Einkommen <= 35.000 EUR):</strong> Bei einem Jahreshaushaltsnettoeinkommen bis ${formatPrice(LIMITS.MIN_INCOME_FREE_U3)} sind Eltern von Krippenkindern von Beiträgen befreit (gemäß Elternbeitragsentlastungsgesetz).`,
-        showEntlastung: true
+        info: '',
+        showEntlastung: true,
+        meta: {
+          rule: 'Beitragsfrei (Einkommen ≤ 35.000 EUR)',
+          notes: ['Gemäß Elternbeitragsentlastungsgesetz.']
+        }
       };
     }
 
@@ -130,8 +171,13 @@
       return {
         fee: base,
         baseFee: base,
-        info: `<strong>Reduzierter Beitrag (Einkommen U3 Entlastung):</strong> Bei ${formatPrice(netIncome)} Einkommen und ${careHours} Std./Woche beträgt der Beitrag ${formatPrice(base)} (gemäß Elternbeitragsentlastungsgesetz). <strong>Kein zusätzlicher Geschwisterrabatt in diesem Einkommensbereich.</strong>`,
-        showEntlastung: true
+        info: '',
+        showEntlastung: true,
+        meta: {
+          rule: 'Reduzierter Beitrag (Entlastung U3)',
+          discountFactor: 1,
+          notes: ['Kein zusätzlicher Geschwisterrabatt in diesem Einkommensbereich.', 'Rechtsgrundlage: Elternbeitragsentlastungsgesetz.']
+        }
       };
     }
 
@@ -142,24 +188,65 @@
       const factor = SIBLING_DISCOUNT[discountKey] ?? 1.0;
       const fee = base * factor;
 
-      let info = `<strong>Regulärer Beitrag (Einkommen U3 Satzung):</strong> Bei ${formatPrice(netIncome)} Einkommen und ${careHours} Std./Woche beträgt der Basisbeitrag ${formatPrice(base)} (gemäß Beitragssatzung).`;
+      const percent = Math.max(0, Math.round((1 - factor) * 100));
+      const meta = {
+        rule: 'Regulärer Beitrag (Satzung U3)',
+        discountFactor: factor,
+        discountPercent: percent,
+        notes: []
+      };
       if (siblingsCount > 1 && factor < 1) {
-        const percent = (100 - factor * 100).toFixed(0);
-        info += ` <strong>Geschwisterermäßigung angewendet:</strong> Bei ${siblingsCount} Kindern (${percent}% Rabatt) reduziert sich der Beitrag auf ${formatPrice(fee)}.`;
-      } else {
-        info += ` Kein Geschwisterrabatt bei einem Kind.`;
+        meta.notes.push(`Geschwisterermäßigung: ${percent}% Rabatt bei ${siblingsCount} Kindern.`);
       }
-
-      return { fee, baseFee: base, info, showEntlastung: false };
+      return { fee, baseFee: base, info: '', showEntlastung: false, meta };
     }
 
     // Fallback (sollte praktisch nicht auftreten, abgedeckt durch <=35k)
     return {
       fee: 0,
       baseFee: 0,
-      info: `<strong>Beitragsfrei (Einkommen U3 < 35k):</strong> Das Einkommen liegt unter ${formatPrice(LIMITS.MIN_INCOME_FREE_U3)}.`,
-      showEntlastung: true
+      info: '',
+      showEntlastung: true,
+      meta: { rule: 'Beitragsfrei (Einkommen U3 < 35k)', notes: [] }
     };
+  }
+
+  // Baue strukturierte Erklärung
+  function buildExplanation(result, input) {
+    const { fee, baseFee, meta } = result;
+    const discountApplied = typeof meta?.discountFactor === 'number' && meta.discountFactor < 1;
+    const discountPercent = discountApplied
+      ? (typeof meta.discountPercent === 'number' ? `${meta.discountPercent}%` : `${(100 - meta.discountFactor * 100).toFixed(0)}%`)
+      : '';
+
+    const incomeText = input.childAgeType === 'kindergarten' ? '–' : formatPrice(input.netIncome);
+    const siblingsText = String(input.siblingsCount);
+    const hoursText = `${input.careHours} h/Woche`;
+
+    const notes = (meta?.notes || [])
+      .map(n => `<li>${n}</li>`)
+      .join('');
+
+    // Build rows dynamically
+    const rows = [
+      [meta?.highestRate ? 'Tarif' : 'Einkommen', meta?.highestRate ? 'Höchstsatz (Satzung)' : incomeText],
+      ['Kinder', siblingsText],
+      ['Betreuung', hoursText]
+    ];
+    if (discountApplied) {
+      rows.push(['Basisbeitrag', formatPrice(baseFee)]);
+      rows.push(['Geschwisterrabatt', discountPercent]);
+    }
+
+    const grid = rows
+      .map(([l, v]) => `<div class="label">${l}</div><div class="value">${v}</div>`)
+      .join('');
+
+    return `
+      <div class="explain-title"><strong>${meta?.rule || 'Zusammensetzung'}</strong></div>
+      <div class="explain-grid">${grid}</div>
+      ${notes ? `<ul class="explain-notes">${notes}</ul>` : ''}
+    `;
   }
 
   // -----------------------------
@@ -191,7 +278,8 @@
   childAgeType: getCheckedValue('childAge', 'krippe'),
   netIncome: parseFloat($('netIncome').value) || 0,
   siblingsCount: parseInt(getCheckedValue('siblings', '1'), 10) || 1,
-      careHours: parseInt($('careHours').value, 10) || 30
+      careHours: parseInt(getCheckedValue('careHours', '30'), 10) || 30,
+      highestRate: !!($('highestRate') && $('highestRate').checked)
     };
   }
 
@@ -201,7 +289,7 @@
 
     $('feeResult').textContent = formatPrice(fee);
     $('totalCost').textContent = formatPrice(total);
-    $('feeExplanation').innerHTML = result.info;
+  $('feeExplanation').innerHTML = buildExplanation(result, input);
 
     const entlastungsLink = $('entlastungsLink');
     if (input.childAgeType === 'krippe' && result.showEntlastung) entlastungsLink.classList.remove('hidden');
@@ -236,7 +324,14 @@
       if (sibEl) sibEl.checked = true;
       // income and hours
       if (typeof saved.netIncome === 'number' && !Number.isNaN(saved.netIncome)) $('netIncome').value = saved.netIncome;
-      if (saved.careHours) $('careHours').value = String(saved.careHours);
+      if (saved.careHours) {
+        const ch = document.querySelector(`input[name="careHours"][value="${saved.careHours}"]`);
+        if (ch) ch.checked = true;
+      }
+      if (typeof saved.highestRate === 'boolean') {
+        const hr = $('highestRate');
+        if (hr) hr.checked = saved.highestRate;
+      }
     }
 
     // Events
@@ -254,16 +349,50 @@
       }
     };
 
-    // Radios: childAge & siblings
-    document.querySelectorAll('input[name="childAge"], input[name="siblings"]').forEach(el => {
+    // Radios: childAge & siblings & careHours
+    document.querySelectorAll('input[name="childAge"], input[name="siblings"], input[name="careHours"]').forEach(el => {
       el.addEventListener('change', maybeRecalc);
     });
     // netIncome tippen/schreiben
-    $('netIncome').addEventListener('input', maybeRecalc);
-    // careHours select
-    $('careHours').addEventListener('change', maybeRecalc);
+    const incomeEl = $('netIncome');
+    incomeEl.addEventListener('input', maybeRecalc);
+    // Klick ins Einkommen-Feld deaktiviert Höchstsatz
+    incomeEl.addEventListener('focus', () => {
+      const hr = $('highestRate');
+      if (hr && hr.checked) {
+        hr.checked = false;
+        maybeRecalc();
+      }
+    });
+    // Höchstsatz Checkbox
+    const hr = $('highestRate');
+    if (hr) {
+      hr.addEventListener('change', maybeRecalc);
+    }
 
-    // Keine Initialberechnung – erst auf Button-Klick
+  // Keine Initialberechnung – erst auf Button-Klick
+
+    // Info-Popover für Höchstsatz
+    const infoBtn = document.querySelector('.highest-option .info-icon');
+    const infoPop = document.getElementById('highestRateInfo');
+    if (infoBtn && infoPop) {
+      const closeAll = () => {
+        infoPop.classList.remove('show');
+        infoBtn.setAttribute('aria-expanded', 'false');
+      };
+      infoBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const isOpen = infoPop.classList.toggle('show');
+        infoBtn.setAttribute('aria-expanded', String(isOpen));
+      });
+      document.addEventListener('click', (e) => {
+        // Schließen bei Klick außerhalb
+        if (!infoPop.contains(e.target) && e.target !== infoBtn) closeAll();
+      });
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') closeAll();
+      });
+    }
   }
 
   if (document.readyState === 'loading') {
