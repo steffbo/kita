@@ -1,8 +1,20 @@
 (function(){
   function qs(sel, el){ return (el||document).querySelector(sel); }
   function qsa(sel, el){ return Array.from((el||document).querySelectorAll(sel)); }
-  function fmtDate(d){ return d.toISOString().slice(0,10); }
+  // Format date as YYYY-MM-DD in local time (avoid UTC shift)
+  function fmtDate(d){
+    const y = d.getFullYear();
+    const m = String(d.getMonth()+1).padStart(2,'0');
+    const day = String(d.getDate()).padStart(2,'0');
+    return `${y}-${m}-${day}`;
+  }
   function addDays(date, n){ const d=new Date(date); d.setDate(d.getDate()+n); return d; }
+  // Parse 'YYYY-MM-DD' as local date (no timezone shift)
+  function parseYMD(s){
+    if(!s) return null;
+    const [y,m,d] = String(s).split('-').map(Number);
+    return new Date(y, (m||1)-1, d||1);
+  }
 
   function parseRanges(data){
     // data: { events: [{label, type, start, end?}] } OR array fallback
@@ -10,8 +22,8 @@
     return (list||[]).map(e=>({
       label: e.label,
       type: e.type || 'event',
-      start: new Date(e.start+'T00:00:00'),
-      end: e.end ? new Date(e.end+'T00:00:00') : new Date(e.start+'T00:00:00')
+      start: parseYMD(e.start),
+      end: e.end ? parseYMD(e.end) : parseYMD(e.start)
     }));
   }
 
@@ -83,9 +95,9 @@
           else if(hits.some(h=>h.type==='event')) dayType = 'event';
           if(dayType) cell.classList.add(dayType);
           cell.title = hits.map(h=>h.label).join(' • ');
-          cell.addEventListener('click', ()=> showDetails(fmtDate(d), hits));
+          cell.addEventListener('click', ()=> showDetails(d, hits));
         } else {
-          cell.addEventListener('click', ()=> showDetails(fmtDate(d), []));
+          cell.addEventListener('click', ()=> showDetails(d, []));
         }
         grid.appendChild(cell);
       }
@@ -132,13 +144,13 @@
     const detailsEl = qs('.cal-details', container) || document.createElement('div');
     detailsEl.classList.add('cal-details');
 
-    function showDetails(dateStr, items){
+    function showDetails(dateObj, items){
       if(!detailsEl.parentNode) container.appendChild(detailsEl);
       if(!items.length){
         detailsEl.innerHTML = '<div class="no-events">Keine besonderen Anlässe oder Schließzeiten an diesem Tag.</div>';
         return;
       }
-      const d = new Date(dateStr+'T00:00:00');
+      const d = new Date(dateObj);
       const header = d.toLocaleDateString('de-DE', { weekday:'long', day:'2-digit', month:'2-digit', year:'numeric' });
       const list = items.map(i => {
         let t;

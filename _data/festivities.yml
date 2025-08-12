@@ -1,0 +1,24 @@
+events:
+  - label: "Busfahrt"
+    type: festivity
+    start: 2025-09-16
+
+  - label: "Herbstfest (vormittags)"
+    type: festivity
+    start: 2025-10-09
+
+  - label: "Lichterfest"
+    type: festivity
+    start: 2025-11-13
+
+  - label: "Adventssingen"
+    type: festivity
+    start: 2025-12-05
+
+  - label: "Team-Weihnachtsfeier"
+    type: festivity
+    start: 2025-12-12
+
+  - label: "Kinder-Weihnachtsfeier"
+    type: festivity
+    start: 2025-12-15

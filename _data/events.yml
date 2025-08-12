@@ -1,22 +1,5 @@
 events:
-  - label: Brückentag (1. Mai)
-    type: closure
-    start: 2025-05-02
-  - label: Brückentag (Himmelfahrt)
-    type: closure
-    start: 2025-05-30
-  - label: Sommerschließwoche
-    type: closure
-    start: 2025-07-28
-    end: 2025-08-01
-  - label: Bildungstag
-    type: closure
-    start: 2025-10-17
-  - label: Weihnachtsferien
-    type: closure
-    start: 2025-12-22
-    end: 2026-01-02
-  - label: Elternkennenlerncafé
+  - label: "Elternkennenlerncafé"
     type: event
     start: 2025-09-10
   - label: Elternversammlung
@@ -25,21 +8,3 @@ events:
   - label: Mitgliederversammlung
     type: event
     start: 2025-10-15
-  - label: Busfahrt
-    type: festivity
-    start: 2025-09-16
-  - label: Herbstfest (vormittags)
-    type: festivity
-    start: 2025-10-09
-  - label: Lichterfest
-    type: festivity
-    start: 2025-11-13
-  - label: Adventssingen
-    type: festivity
-    start: 2025-12-05
-  - label: Team-Weihnachtsfeier
-    type: festivity
-    start: 2025-12-12
-  - label: Kinder-Weihnachtsfeier
-    type: festivity
-    start: 2025-12-15

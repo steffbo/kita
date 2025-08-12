@@ -31,7 +31,9 @@
 <h3 id="calendar">Kalender</h3>
 <div id="closures-calendar" data-calendar>
   <script type="application/json" data-events>
-    {{ site.data.events | jsonify }}
+    { "events": {{
+      site.data.closures.events | concat: site.data.festivities.events | concat: site.data.events.events | jsonify
+    }} }
   </script>
   <div class="cal-details" aria-live="polite"></div>
 </div>

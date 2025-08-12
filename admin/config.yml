@@ -55,23 +55,39 @@ collections:
     editor:
       preview: false
     files:
-      - name: 'events'
-        label: 'Kalender (Schließzeiten & Anlässe)'
+      - name: 'closures'
+        label: 'Kalender: Schließzeiten'
+        file: '_data/closures.yml'
+        fields:
+          - label: 'Einträge'
+            name: 'events'
+            widget: 'list'
+            fields:
+              - { label: 'Titel/Grund', name: 'label', widget: 'string' }
+              - { label: 'Typ', name: 'type', widget: 'hidden', default: 'closure' }
+              - { label: 'Start', name: 'start', widget: 'datetime', format: 'YYYY-MM-DD', time_format: false }
+              - { label: 'Ende (optional)', name: 'end', widget: 'datetime', required: false, format: 'YYYY-MM-DD', time_format: false }
+      - name: 'appointments'
+        label: 'Kalender: Termine (Eltern)'
         file: '_data/events.yml'
         fields:
           - label: 'Einträge'
             name: 'events'
             widget: 'list'
-            hint: 'Schließtage (closure), Termine (event) und Feste (festivity)'
             fields:
-              - { label: 'Titel/Grund', name: 'label', widget: 'string' }
-              - label: 'Typ'
-                name: 'type'
-                widget: 'select'
-                options:
-                  - { label: 'Schließtag', value: 'closure' }
-                  - { label: 'Eltern', value: 'event' }
-                  - { label: 'Fest', value: 'festivity' }
-                default: 'closure'
+              - { label: 'Titel', name: 'label', widget: 'string' }
+              - { label: 'Typ', name: 'type', widget: 'hidden', default: 'event' }
+              - { label: 'Start', name: 'start', widget: 'datetime', format: 'YYYY-MM-DD', time_format: false }
+              - { label: 'Ende (optional)', name: 'end', widget: 'datetime', required: false, format: 'YYYY-MM-DD', time_format: false }
+      - name: 'festivities'
+        label: 'Kalender: Feste'
+        file: '_data/festivities.yml'
+        fields:
+          - label: 'Einträge'
+            name: 'events'
+            widget: 'list'
+            fields:
+              - { label: 'Titel', name: 'label', widget: 'string' }
+              - { label: 'Typ', name: 'type', widget: 'hidden', default: 'festivity' }
               - { label: 'Start', name: 'start', widget: 'datetime', format: 'YYYY-MM-DD', time_format: false }
               - { label: 'Ende (optional)', name: 'end', widget: 'datetime', required: false, format: 'YYYY-MM-DD', time_format: false }

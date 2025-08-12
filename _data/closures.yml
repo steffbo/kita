@@ -1,0 +1,22 @@
+events:
+  - label: "Brückentag (1. Mai)"
+    type: closure
+    start: 2025-05-02
+
+  - label: "Brückentag (Himmelfahrt)"
+    type: closure
+    start: 2025-05-30
+
+  - label: "Sommerschließwoche"
+    type: closure
+    start: 2025-07-28
+    end: 2025-08-01
+
+  - label: "Bildungstag"
+    type: closure
+    start: 2025-10-17
+
+  - label: "Weihnachtsferien"
+    type: closure
+    start: 2025-12-22
+    end: 2026-01-02
