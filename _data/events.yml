@@ -43,7 +43,3 @@ events:
   - label: Kinder-Weihnachtsfeier
     type: festivity
     start: 2025-12-15
-  - type: event
-    label: Test
-    start: 2025-11-28
-    end: ""
