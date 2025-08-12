@@ -48,3 +48,30 @@ collections:
       - {label: 'Titel', name: 'title', widget: 'string'}
       - {label: 'Veröffentlichungsdatum', name: 'date', widget: 'datetime'}
       - {label: 'Inhalt', name: 'body', widget: 'markdown'}
+
+  - name: 'events'
+    label: 'Kalender-Einträge'
+    delete: false
+    editor:
+      preview: false
+    files:
+      - name: 'events'
+        label: 'Kalender (Schließzeiten & Anlässe)'
+        file: '_data/events.yml'
+        fields:
+          - label: 'Einträge'
+            name: 'events'
+            widget: 'list'
+            hint: 'Schließtage (closure) und besondere Anlässe (event)'
+            fields:
+              - { label: 'Titel/Grund', name: 'label', widget: 'string' }
+              - label: 'Typ'
+                name: 'type'
+                widget: 'select'
+                options:
+                  - { label: 'Schließtag', value: 'closure' }
+                  - { label: 'Eltern', value: 'event' }
+                  - { label: 'Fest', value: 'festivity' }
+                default: 'closure'
+              - { label: 'Start', name: 'start', widget: 'date', format: 'YYYY-MM-DD' }
+              - { label: 'Ende (optional)', name: 'end', widget: 'date', required: false, format: 'YYYY-MM-DD' }

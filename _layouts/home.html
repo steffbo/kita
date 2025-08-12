@@ -1,8 +1,28 @@
 ---
-layout: page
+layout: default
 ---
 
-{% include carousel.html %}
+<div class="container-xl">
+	<div class="row">
+		<div class="col-xl-8 col-lg-8">
+			{% include carousel.html %}
+			<div id="startpage">
+				{{ content }}
+			</div>
+		</div>
 
-{{ content }}
+		<!-- Desktop/Tablet Sidebar rechts -->
+		<aside class="col-xl-4 col-lg-4 d-none d-lg-block home-aside">
+			{% include start-aside.html %}
+		</aside>
+
+		<!-- Mobil: Sidebar am Seitenende -->
+		<div class="col-12 d-lg-none">
+			<aside class="home-aside">
+				{% include start-aside.html %}
+			</aside>
+		</div>
+	</div>
+  
+</div>
 

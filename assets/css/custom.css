@@ -18,6 +18,10 @@ header .container-md {
   padding-bottom: 50px; /* Footer height */
 }
 
+/* Also apply footer spacing for wider home container */
+header .container-xl { padding-bottom: 10px; }
+.container-xl { padding-bottom: 50px; }
+
 /* Sticky footer */
 footer {
   position: fixed;
@@ -32,3 +36,245 @@ footer {
 footer p {
   margin: 0;
 }
+
+/* Farbvariablen global, damit auch die Sidebar sie erbt */
+:root{
+  /* Farbwelt */
+  /* Grünpalette passend zu Header/Footer (#DAEFB4) */
+  --brand-50:#f5fbe9;
+  --brand-100:#eaf6d3;
+  --brand-400:#c9ebb2;
+  --brand-600:#86c06a;
+  --ink-700:#1f2937;
+  --muted:#4b5563;
+  --border:#e7eff7;
+  --shadow: 0 8px 24px rgba(16,24,40,.08), 0 2px 6px rgba(16,24,40,.04);
+}
+
+/* Startseite (#startpage) – freundliche Farben & besseres Layout */
+#startpage{
+  background: linear-gradient(180deg, #ffffff 0%, #fbfdff 60%, #f6fbff 100%);
+  padding: 6px;
+  border-radius: 14px;
+}
+
+/* Slider Pfeile als Overlay */
+.slider-wrap{ position: relative; }
+.tns-outer{ position: relative; }
+.slider-controls{
+  position: absolute;
+  top: 50%; left: 0; right: 0;
+  transform: translateY(-50%);
+  display: flex; justify-content: space-between; pointer-events: none;
+  z-index: 2;
+}
+.tns-controls{ display:none; }
+.slider-controls .slider-arrow{
+  pointer-events: auto;
+  background: rgba(255,255,255,0.9);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow);
+  border-radius: 999px;
+  width: 40px; height: 40px;
+  line-height: 38px; text-align: center;
+  font-size: 22px; color: var(--ink-700);
+}
+
+/* Home Sidebar (Bootstrap-Grid): rechts sticky auf Desktop, mobil automatisch unten */
+@media (min-width: 992px){
+  .home-aside{ position: sticky; top: 76px; }
+  .home-aside .hours-table{ font-size: 0.95rem; }
+  .home-aside #closures-calendar{ font-size: 0.95rem; }
+}
+
+/* Anker-Ziele nicht unter der fixen Navbar verschwinden lassen */
+#hours, #calendar{ scroll-margin-top: 96px; }
+
+#startpage h1,
+#startpage h2,
+#startpage h3{ color: var(--ink-700); }
+#startpage h2{ border-bottom: 0; margin-top: 1.25rem; }
+
+/* Intro-Karte */
+#startpage .intro-card{
+  background: var(--brand-50);
+  border: 1px solid var(--brand-100);
+  border-radius: 14px;
+  padding: 16px 18px;
+  box-shadow: var(--shadow);
+  margin: 0 0 1.25rem 0;
+}
+
+/* Öffnungszeiten Tabelle (Startseite + Sidebar) */
+#startpage .hours-card,
+.home-aside .hours-card{
+  background:#fff;
+  border:1px solid var(--border);
+  border-radius:14px;
+  box-shadow: var(--shadow);
+  overflow:hidden; /* Safari: Rundung erzwingen */
+}
+#startpage .hours-table,
+.home-aside .hours-table{
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+}
+#startpage .hours-table td,
+.home-aside .hours-table td{
+  padding: 14px 16px;
+  border-bottom: 1px solid var(--border);
+  vertical-align: top;
+}
+#startpage .hours-table tr:last-child td,
+.home-aside .hours-table tr:last-child td{ border-bottom: 0; }
+#startpage .hours-table td:first-child,
+.home-aside .hours-table td:first-child{
+  width: 42%;
+  font-weight: 700;
+  background: var(--brand-50);
+  color: var(--ink-700);
+  border-right: 1px solid var(--border);
+}
+/* Zeitspalte besser lesbar */
+#startpage .hours-table td .time,
+.home-aside .hours-table td .time{ font-variant-numeric: tabular-nums; font-weight: 700; }
+#startpage .hours-table td .unit,
+.home-aside .hours-table td .unit{ color: var(--muted); }
+#startpage .muted,
+.home-aside .muted{ color: var(--muted); }
+
+/* Tage/Zeiten kompakt als Grid mit Badges */
+#startpage .days,
+.home-aside .days{
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: center;
+  gap: 6px 12px;
+}
+#startpage .days .d,
+.home-aside .days .d{
+  display: inline-block;
+  padding: 2px 10px;
+  border-radius: 999px;
+  background: var(--brand-50);
+  border: 1px solid var(--brand-100);
+  color: var(--ink-700);
+  font-weight: 700;
+}
+#startpage .days .t,
+.home-aside .days .t{
+  color: var(--ink-700);
+  white-space: nowrap;
+}
+
+/* Responsiv */
+@media (max-width: 680px){
+  #startpage .hours-table,
+  #startpage .hours-table tbody,
+  #startpage .hours-table tr,
+  #startpage .hours-table td{ display: block; width: 100%; }
+  #startpage .hours-table{ box-shadow: none; background: transparent; }
+  #startpage .hours-table tr{
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    margin-bottom: 12px;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+  }
+  #startpage .hours-table td{ border: 0; }
+  #startpage .hours-table td:first-child{
+    border-right: 0;
+    border-bottom: 1px solid var(--border);
+    background: var(--brand-50);
+  }
+}
+
+/* Kalender für Schließzeiten */
+#closures-calendar{
+  margin-top: 16px;
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  box-shadow: var(--shadow);
+  padding: 10px 12px 14px;
+}
+#closures-calendar .cal-header{
+  display:flex; align-items:center; justify-content:space-between;
+  margin-bottom: 10px;
+}
+#closures-calendar .cal-nav-group{ display:flex; align-items:center; gap:6px; }
+#closures-calendar .cal-title{ font-weight:700; color: var(--ink-700); }
+#closures-calendar .cal-nav{
+  background: var(--brand-50);
+  border: 1px solid var(--brand-100);
+  color: var(--ink-700);
+  padding: 2px 10px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+#closures-calendar .cal-grid{
+  display: grid;
+  grid-template-columns: repeat(7, minmax(34px, 1fr));
+  gap: 6px 8px;
+}
+#closures-calendar .cal-cell{
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 6px 6px;
+  color: var(--ink-700);
+}
+#closures-calendar .cal-head{
+  background: var(--brand-50);
+  border-color: var(--brand-100);
+  font-weight: 700;
+  text-align:center;
+}
+#closures-calendar .cal-pad{
+  background: transparent;
+  border: 0;
+}
+#closures-calendar .cal-day{ position: relative; }
+#closures-calendar .cal-day .num{ font-weight: 700; }
+#closures-calendar .cal-day.wknd{ background: #fcfdff; }
+#closures-calendar .cal-day.today{ outline: 2px solid var(--brand-400); }
+#closures-calendar .cal-day.cal-out{ opacity: .55; }
+#closures-calendar .cal-day.closed{
+  background: linear-gradient(0deg, rgba(255, 73, 73, 0.06), rgba(255, 73, 73, 0.06)), #fff;
+  border-color: #ffd1d1;
+}
+#closures-calendar .cal-day.festivity{
+  background: linear-gradient(0deg, rgba(134, 192, 106, 0.12), rgba(134, 192, 106, 0.12)), #fff;
+  border-color: #ccebd7;
+}
+#closures-calendar .cal-day.event{
+  background: linear-gradient(0deg, rgba(66, 133, 244, 0.12), rgba(66, 133, 244, 0.12)), #fff;
+  border-color: #cfe1ff;
+}
+#closures-calendar .cal-legend{ margin-top: 8px; color: var(--muted); font-size: .95rem; display:flex; align-items:center; gap:6px; }
+#closures-calendar .badge.closed{
+  width:12px; height:12px; border-radius:3px; display:inline-block; background:#ffd1d1; border:1px solid #ffb4b4;
+}
+#closures-calendar .badge.festivity{
+  width:12px; height:12px; border-radius:3px; display:inline-block; background:#dff3d6; border:1px solid #9ad9b7;
+}
+#closures-calendar .badge.event{
+  width:12px; height:12px; border-radius:3px; display:inline-block; background:#d6e8ff; border:1px solid #a9c8ff;
+}
+
+/* Detailsbereich unter dem Kalender */
+#closures-calendar .cal-details{
+  margin-top: 10px;
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 10px 12px;
+}
+#closures-calendar .details-head{ font-weight:700; margin-bottom: 6px; color: var(--ink-700); }
+#closures-calendar .details-list{ list-style: none; margin: 0; padding-left: 0; display: grid; gap: 6px; }
+#closures-calendar .pill{ display:inline-block; padding: 0 8px; border-radius: 999px; font-size:.85rem; margin-right:6px; }
+#closures-calendar .pill.closure{ background:#ffd1d1; border:1px solid #ffb4b4; }
+#closures-calendar .pill.festivity{ background:#ccebd7; border:1px solid #9ad9b7; }
+#closures-calendar .pill.event{ background:#d6e8ff; border:1px solid #a9c8ff; }

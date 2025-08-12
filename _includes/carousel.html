@@ -1,4 +1,5 @@
-<div class="my-slider">
+<div class="slider-wrap">
+    <div class="my-slider">
     {% for file in site.static_files %}
     {% if file.path contains '/assets/img/slider/' %}
     <div>
@@ -10,16 +11,26 @@
     </div>
     {% endif %}
     {% endfor %}
+    </div>
+    <div class="slider-controls" aria-label="Bildnavigation">
+        <button type="button" class="slider-arrow" data-controls="prev" aria-label="Vorheriges Bild">
+            <i class="fa-solid fa-chevron-left" aria-hidden="true"></i>
+        </button>
+        <button type="button" class="slider-arrow" data-controls="next" aria-label="Nächstes Bild">
+            <i class="fa-solid fa-chevron-right" aria-hidden="true"></i>
+        </button>
+    </div>
 </div>
 
 <script>
     document.addEventListener('DOMContentLoaded', function () {
-        tns({
+        const slider = tns({
             container: '.my-slider',
             items: 1,
             slideBy: 'page',
             autoplay: true,
-            controls: false,
+            controls: true,
+            controlsContainer: '.slider-controls',
             nav: true,
             autoplayTimeout: 5000,
             autoplayButtonOutput: false,

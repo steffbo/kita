@@ -1,0 +1,39 @@
+<h2 id="hours">Öffnungszeiten</h2>
+<div class="hours-card">
+<table class="hours-table">
+  <tr>
+    <td>Mo</td>
+  <td><span class="time">6:30 – 16:30</span> <span class="unit"></span></td>
+  </tr>
+  <tr>
+    <td>Di</td>
+  <td><span class="time">6:30 – 16:30</span> <span class="unit"></span></td>
+  </tr>
+  <tr>
+    <td>Mi</td>
+  <td><span class="time">6:30 – 16:30</span> <span class="unit"></span></td>
+  </tr>
+  <tr>
+    <td>Do</td>
+  <td><span class="time">6:30 – 16:30</span> <span class="unit"></span></td>
+  </tr>
+  <tr>
+    <td>Fr</td>
+  <td><span class="time">6:30 – 16:00</span> <span class="unit"></span></td>
+  </tr>
+  <tr>
+    <td>Kernzeit</td>
+  <td><span class="time">9:00 – 11:30</span> <span class="unit"></span></td>
+  </tr>
+</table>
+</div>
+
+<h3 id="calendar">Kalender</h3>
+<div id="closures-calendar" data-calendar>
+  <script type="application/json" data-events>
+    {{ site.data.events | jsonify }}
+  </script>
+  <div class="cal-details" aria-live="polite"></div>
+</div>
+
+<!-- **Achtung:** Für Neuaufnahmen gilt eine Betreuungszeit von 6:30 - 16:30 Uhr. -->
