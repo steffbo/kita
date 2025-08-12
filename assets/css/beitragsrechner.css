@@ -14,18 +14,32 @@
   margin-bottom: 15px;
 }
 
-label {
+.form-group > label, .label {
   display: block;
   margin-bottom: 5px;
   font-weight: bold;
 }
 
-input, select {
+input[type="number"], select {
   width: 100%;
   padding: 8px;
   border: 1px solid #ddd;
   border-radius: 4px;
   box-sizing: border-box;
+}
+
+.inline-options {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.inline-options .option {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: normal;
+  margin: 4px 0;
 }
 
 #calculateButton {

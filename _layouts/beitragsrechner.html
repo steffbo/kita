@@ -6,29 +6,29 @@ layout: page
 
 <div class="calculator">
     <div class="form-group">
-        <label for="childAge">Alter des Kindes:</label>
-        <select id="childAge">
-            <option value="krippe">Krippe (unter 3 Jahre)</option>
-            <option value="kindergarten">Kindergarten (ab 3 Jahre)</option>
-        </select>
+        <span class="label">Alter des Kindes:</span>
+        <div class="inline-options" role="radiogroup" aria-label="Alter des Kindes">
+            <label class="option"><input type="radio" name="childAge" value="krippe" checked> Krippe (unter 3 Jahre)</label>
+            <label class="option"><input type="radio" name="childAge" value="kindergarten"> Kindergarten (ab 3 Jahre)</label>
+        </div>
     </div>
 
     <div class="form-group">
         <label for="netIncome">Jährliches Haushalts-Netto-Einkommen (EUR):</label>
-        <input type="number" id="netIncome" min="0" value="30000">
+        <input type="number" id="netIncome" min="0" value="43795"> <!-- Median 2024 -->
     </div>
 
     <div class="form-group">
-        <label for="siblings">Anzahl unterhaltsberechtigter Kinder (inkl. dieses Kind):</label>
-        <select id="siblings">
-            <option value="1">1 Kind</option>
-            <option value="2">2 Kinder</option>
-            <option value="3">3 Kinder</option>
-            <option value="4">4 Kinder</option>
-            <option value="5">5 Kinder</option>
-            <option value="6">6 Kinder</option>
-            <option value="7">7 oder mehr Kinder</option>
-        </select>
+        <span class="label">Anzahl unterhaltsberechtigter Kinder (inkl. dieses Kind):</span>
+        <div class="inline-options" role="radiogroup" aria-label="Anzahl Kinder">
+            <label class="option"><input type="radio" name="siblings" value="1" checked> 1</label>
+            <label class="option"><input type="radio" name="siblings" value="2"> 2</label>
+            <label class="option"><input type="radio" name="siblings" value="3"> 3</label>
+            <label class="option"><input type="radio" name="siblings" value="4"> 4</label>
+            <label class="option"><input type="radio" name="siblings" value="5"> 5</label>
+            <label class="option"><input type="radio" name="siblings" value="6"> 6</label>
+            <label class="option"><input type="radio" name="siblings" value="7"> 7+</label>
+        </div>
     </div>
 
     <div class="form-group">
@@ -59,7 +59,7 @@ layout: page
         <div class="total-section">
             <h3>Gesamtkosten pro Monat</h3>
             <div class="amount" id="totalCost">-- EUR</div>
-            <div class="info">Inklusive Essensgeld (pauschal 45,40 EUR)</div>
+            <div class="info">Inklusive Essensgeld (pauschal <span id="foodCostDisplay">45,40 EUR</span>)</div>
         </div>
 
         <div class="payment-info">
@@ -74,267 +74,4 @@ layout: page
     </p>
 </div>
 
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-        // --- Konstanten Definition ---
-        const MIN_INCOME_FREE_U3 = 35000.00;     // Einkommensgrenze für Beitragsfreiheit Krippe (U3)
-        const MIN_INCOME_ENTLASTUNG_U3 = 35000.01; // Untergrenze Entlastungspaket Krippe (U3)
-        const MAX_INCOME_ENTLASTUNG_U3 = 55000.00; // Obergrenze Entlastungspaket Krippe (U3)
-        const MIN_INCOME_SATZUNG_U3 = 55000.01;    // Untergrenze Satzung/Höchstsatz Krippe (U3)
-        const FOOD_COST = 45.40;                // Monatliche Essensgeld-Pauschale
-        const KIGA_AGE_THRESHOLD = 3;           // Altersschwelle Kindergarten (ab 3 Jahre)
-        const MAX_SIBLINGS_FOR_DISCOUNT = 6;    // Max. Kinderanzahl für spezifischen Rabattfaktor
-        const SIBLINGS_FREE_THRESHOLD = 7;      // Ab dieser Kinderanzahl ist Beitrag = 0
-
-        // --- DOM Element Referenzen ---
-        const calculateButton = document.getElementById('calculateButton');
-        const childAgeSelect = document.getElementById('childAge');
-        const netIncomeInput = document.getElementById('netIncome');
-        const siblingsSelect = document.getElementById('siblings');
-        const careHoursSelect = document.getElementById('careHours');
-        const resultSection = document.getElementById('resultSection');
-        const feeResult = document.getElementById('feeResult');
-        const totalCost = document.getElementById('totalCost');
-        const feeExplanation = document.getElementById('feeExplanation');
-        const entlastungsLink = document.getElementById('entlastungsLink');
-        const foodCostDisplay = document.getElementById('foodCostDisplay');
-
-        // --- Gebührentabellen (Einheitliche Struktur mit minIncome, aufsteigend sortiert) ---
-
-        // Tabelle 1: Krippe U3 - Basis für Satzung (Einkommen >= 20.000,01 €)
-        // Wird relevant für Einkommen >= MIN_INCOME_SATZUNG_U3
-        const feeTableKrippeSatzung = [
-            // minIncome: Untergrenze der Einkommensstufe (ab diesem Betrag gilt die Zeile)
-            // rates: Beiträge für [30, 35, 40, 45, 50, 55] Stunden/Woche
-            { minIncome: 20000.01, rates: [55.52, 62.46, 69.40, 76.34, 83.28, 90.22] },
-            { minIncome: 22000.00, rates: [77.73, 87.44, 97.16, 106.88, 116.59, 126.31] },
-            { minIncome: 25000.00, rates: [107.25, 120.66, 134.07, 147.48, 160.88, 174.29] },
-            { minIncome: 28000.00, rates: [141.32, 158.99, 176.65, 194.32, 211.99, 229.65] },
-            { minIncome: 31000.00, rates: [156.47, 176.02, 195.58, 215.14, 234.70, 254.26] },
-            { minIncome: 34000.00, rates: [171.61, 193.06, 214.51, 235.96, 257.41, 278.86] },
-            { minIncome: 37000.00, rates: [186.75, 210.09, 233.44, 256.78, 280.12, 303.47] },
-            { minIncome: 40000.00, rates: [201.89, 227.13, 252.36, 277.60, 302.84, 328.07] },
-            { minIncome: 43000.00, rates: [217.03, 244.16, 271.29, 298.42, 325.55, 352.68] },
-            { minIncome: 46000.00, rates: [232.17, 261.20, 290.22, 319.24, 348.26, 377.28] },
-            { minIncome: 49000.00, rates: [247.32, 278.23, 309.15, 340.06, 370.97, 401.89] },
-            { minIncome: 52000.00, rates: [262.46, 295.27, 328.07, 360.88, 393.69, 426.49] },
-            { minIncome: 55000.01, rates: [277.60, 312.30, 347.00, 381.70, 416.40, 451.10] }
-            // Ggf. weitere Stufen > 55k hier hinzufügen, falls vorhanden
-        ];
-
-        // Tabelle 2: Krippe U3 - Entlastungspaket (35.000,01 € - 55.000,00 €)
-        const feeTableKrippeEntlastung = [
-            // minIncome: Untergrenze des Bereichs. Gilt bis zum nächsten minIncome (oder MAX_INCOME_ENTLASTUNG_U3)
-            // rates: Beiträge für [30, 35, 40, 45, 50, 55] Stunden/Woche
-            { minIncome: 35000.01, rates: [48.00, 54.00, 60.00, 66.00, 72.00, 78.00] }, // Gilt bis 40000.00
-            { minIncome: 40000.01, rates: [80.00, 90.00, 100.00, 110.00, 120.00, 130.00] }, // Gilt bis 45000.00
-            { minIncome: 45000.01, rates: [120.00, 135.00, 150.00, 165.00, 180.00, 195.00] }, // Gilt bis 50000.00
-            { minIncome: 50000.01, rates: [168.00, 189.00, 210.00, 231.00, 252.00, 273.00] }  // Gilt bis 55000.00
-        ];
-
-        // Tabelle 3: Kindergarten Ü3 - (Beitragsfrei, Daten nur zur Vollständigkeit)
-        const feeTableKindergarten = [
-            // minIncome: Untergrenze der Einkommensstufe
-            // rates: Beiträge für [30, 35, 40, 45, 50, 55] Stunden/Woche
-            { minIncome: 20000.01, rates: [49.28, 55.44, 61.60, 67.76, 73.92, 80.08] },
-            { minIncome: 22000.00, rates: [68.99, 77.62, 86.24, 94.86, 103.49, 112.11] },
-            { minIncome: 25000.00, rates: [95.20, 107.10, 119.00, 130.90, 142.80, 154.70] },
-            { minIncome: 28000.00, rates: [125.44, 141.12, 156.80, 172.48, 188.16, 203.84] },
-            { minIncome: 31000.00, rates: [138.88, 156.24, 173.60, 190.96, 208.32, 225.68] },
-            { minIncome: 34000.00, rates: [152.32, 171.36, 190.40, 209.44, 228.48, 247.52] },
-            { minIncome: 37000.00, rates: [165.76, 186.48, 207.20, 227.92, 248.64, 269.36] },
-            { minIncome: 40000.00, rates: [179.20, 201.60, 224.00, 246.40, 268.80, 291.20] },
-            { minIncome: 43000.00, rates: [192.64, 216.72, 240.80, 264.88, 288.96, 313.04] },
-            { minIncome: 46000.00, rates: [206.08, 231.84, 257.60, 283.36, 309.12, 334.88] },
-            { minIncome: 49000.00, rates: [219.52, 246.96, 274.40, 301.84, 329.28, 356.72] },
-            { minIncome: 52000.00, rates: [232.96, 262.08, 291.20, 320.32, 349.44, 378.56] },
-            { minIncome: 55000.00, rates: [246.40, 277.20, 308.00, 338.80, 369.60, 400.40] }
-        ];
-
-        // Geschwisterrabatt-Faktoren (nur für Krippe U3, Einkommen >= MIN_INCOME_SATZUNG_U3)
-        const siblingDiscountFactors = {
-            1: 1.00, // Kein Rabatt
-            2: 0.90, // 90% zahlbar
-            3: 0.80, // 80% zahlbar
-            4: 0.65, // 65% zahlbar
-            5: 0.45, // 45% zahlbar
-            6: 0.25  // 25% zahlbar
-            // Bei 7+ Kindern ist der Beitrag 0 (siehe Regel SIBLINGS_FREE_THRESHOLD)
-        };
-
-        // --- Hilfsfunktionen ---
-
-        // Funktion zur Preisformatierung
-        function formatPrice(price) {
-            if (typeof price !== 'number' || isNaN(price)) { return '-- EUR'; }
-            const roundedPrice = Math.round(price * 100) / 100;
-            if (Math.floor(roundedPrice) === roundedPrice) {
-                return roundedPrice.toFixed(0) + ' EUR';
-            } else {
-                return roundedPrice.toFixed(2).replace('.', ',') + ' EUR';
-            }
-        }
-
-        // Funktion zum Finden des korrekten Beitragssatzes aus einer aufsteigend sortierten Tabelle
-        function findRateInTable(table, income, hours) {
-            const hoursIndex = Math.max(0, Math.min(5, Math.round((hours - 30) / 5))); // Index 0-5
-            let selectedRate = 0;
-            let foundBracket = null;
-
-            // Finde die letzte Zeile (höchste minIncome), deren minIncome <= dem Einkommen ist
-            // Iteriere von unten nach oben (höchste Stufe zuerst prüfen ist effizienter bei aufst. Sortierung)
-            for (let i = table.length - 1; i >= 0; i--) {
-                if (income >= table[i].minIncome) {
-                    foundBracket = table[i];
-                    break; // Sobald die höchste passende Stufe gefunden ist, abbrechen
-                }
-            }
-
-            if (foundBracket && foundBracket.rates && foundBracket.rates.length > hoursIndex) {
-                selectedRate = foundBracket.rates[hoursIndex];
-            } else {
-                // Einkommen liegt unter der niedrigsten Stufe der Tabelle
-                console.warn(`Einkommen ${income} liegt unter der niedrigsten Stufe (${table[0]?.minIncome}) der Tabelle.`);
-                selectedRate = 0; // Beitrag ist in diesem Fall 0 (wird durch <=35k Regel abgedeckt)
-            }
-
-            if (isNaN(selectedRate)) {
-                console.error(`Fehler: Ungültiger Satz (NaN) für Einkommen ${income}, Stunden ${hours}, Index ${hoursIndex}.`);
-                return 0;
-            }
-            return selectedRate;
-        }
-
-        // --- Hauptberechnungsfunktion ---
-        function calculateFee() {
-            // Aktuelle Werte aus den Formularfeldern lesen
-            const childAgeType = childAgeSelect.value;
-            const netIncome = parseFloat(netIncomeInput.value) || 0;
-            const siblingsCount = parseInt(siblingsSelect.value) || 1;
-            const careHours = parseInt(careHoursSelect.value) || 30;
-
-            let calculatedFee = 0;
-            let baseFee = 0; // Beitrag vor Geschwisterrabatt
-            let explanationText = '';
-            let showEntlastungsInfo = false;
-            let ruleApplied = ''; // Track which rule determined the fee
-
-            // --- Fall 1: Kindergarten (ab 3 Jahre) ---
-            if (childAgeType === 'kindergarten') {
-                calculatedFee = 0;
-                baseFee = 0;
-                ruleApplied = 'Alter >= 3 Jahre';
-                explanationText = `<strong>Beitragsfrei (${ruleApplied}):</strong> Für Kinder ab ${KIGA_AGE_THRESHOLD} Jahren ist die Betreuung in Brandenburg beitragsfrei.`;
-            }
-            // --- Fall 2: Krippe (unter 3 Jahre) ---
-            else {
-                // --- Vorrangige Regel: 7 oder mehr Kinder ---
-                if (siblingsCount >= SIBLINGS_FREE_THRESHOLD) {
-                    calculatedFee = 0;
-                    baseFee = 0;
-                    ruleApplied = `Kinderanzahl >= ${SIBLINGS_FREE_THRESHOLD}`;
-                    explanationText = `<strong>Beitragsfrei (${ruleApplied}):</strong> Bei ${siblingsCount} unterhaltsberechtigten Kindern entfällt der Elternbeitrag für Krippenkinder.`;
-                }
-                // --- Sonstige Regeln für Krippe (wenn weniger als 7 Kinder) ---
-                else {
-                    // 2a: Beitragsfrei wegen Einkommen <= 35.000 €
-                    if (netIncome <= MIN_INCOME_FREE_U3) {
-                        calculatedFee = 0;
-                        baseFee = 0;
-                        ruleApplied = 'Einkommen <= 35.000';
-                        explanationText = `<strong>Beitragsfrei (${ruleApplied}):</strong> Bei einem Jahreshaushaltsnettoeinkommen bis ${formatPrice(MIN_INCOME_FREE_U3)} sind Eltern von Krippenkindern von Beiträgen befreit (gemäß Elternbeitragsentlastungsgesetz).`;
-                        showEntlastungsInfo = true;
-                    }
-                    // 2b: Reduzierter Beitrag wegen Einkommen 35.000,01 € - 55.000,00 € (Entlastungspaket)
-                    else if (netIncome >= MIN_INCOME_ENTLASTUNG_U3 && netIncome <= MAX_INCOME_ENTLASTUNG_U3) {
-                        // Verwende die spezifische Entlastungstabelle
-                        baseFee = findRateInTable(feeTableKrippeEntlastung, netIncome, careHours);
-                        calculatedFee = baseFee; // Kein Geschwisterrabatt hier!
-                        ruleApplied = 'Einkommen U3 Entlastung';
-                        explanationText = `<strong>Reduzierter Beitrag (${ruleApplied}):</strong> Bei ${formatPrice(netIncome)} Einkommen und ${careHours} Std./Woche beträgt der Beitrag ${formatPrice(calculatedFee)} (gemäß Elternbeitragsentlastungsgesetz). <strong>Kein zusätzlicher Geschwisterrabatt in diesem Einkommensbereich.</strong>`;
-                        showEntlastungsInfo = true;
-                    }
-                    // 2c: Regulärer Beitrag gemäß Satzung (Einkommen >= 55.000,01 €)
-                    else if (netIncome >= MIN_INCOME_SATZUNG_U3) {
-                        // Verwende die Satzungstabelle
-                        baseFee = findRateInTable(feeTableKrippeSatzung, netIncome, careHours);
-                        calculatedFee = baseFee; // Startwert = Basisbeitrag
-                        ruleApplied = 'Einkommen U3 Satzung';
-
-                        explanationText = `<strong>Regulärer Beitrag (${ruleApplied}):</strong> Bei ${formatPrice(netIncome)} Einkommen und ${careHours} Std./Woche beträgt der Basisbeitrag ${formatPrice(baseFee)} (gemäß Beitragssatzung).`;
-
-                        // Geschwisterrabatt anwenden (nur wenn weniger als SIBLINGS_FREE_THRESHOLD Kinder)
-                        if (siblingsCount > 1) {
-                            // Faktor für max. 6 Kinder holen
-                            const discountKey = Math.min(siblingsCount, MAX_SIBLINGS_FOR_DISCOUNT);
-                            const discountFactor = siblingDiscountFactors[discountKey];
-
-                            if (discountFactor !== undefined && discountFactor < 1.0) {
-                                calculatedFee = baseFee * discountFactor;
-                                explanationText += ` <strong>Geschwisterermäßigung angewendet:</strong> Bei ${siblingsCount} Kindern (${(100 - discountFactor * 100).toFixed(0)}% Rabatt) reduziert sich der Beitrag auf ${formatPrice(calculatedFee)}.`;
-                            } else if (discountFactor === 1.0) {
-                                explanationText += ` Kein Geschwisterrabatt bei einem Kind.`;
-                            } else {
-                                // Sollte nicht passieren bei korrekten Faktoren
-                                explanationText += ` <strong>Hinweis:</strong> Ungültiger Rabattfaktor für ${siblingsCount} Kinder gefunden.`;
-                            }
-                        } else {
-                            explanationText += ` Kein Geschwisterrabatt bei einem Kind.`;
-                        }
-                    }
-                    // 2d: Fallback (Einkommen unter 20.000,01 €, abgedeckt durch Regel 2a)
-                    else {
-                        calculatedFee = 0;
-                        baseFee = 0;
-                        ruleApplied = 'Einkommen U3 (< 35k)'; // Fällt unter die 35k-Regel
-                        explanationText = `<strong>Beitragsfrei (${ruleApplied}):</strong> Das Einkommen liegt unter ${formatPrice(MIN_INCOME_FREE_U3)}.`;
-                        showEntlastungsInfo = true;
-                    }
-                } // Ende else (weniger als 7 Kinder)
-            } // Ende else (Krippe)
-
-            // --- Gesamtkosten berechnen ---
-            calculatedFee = Math.max(0, calculatedFee); // Sicherstellen, dass nicht negativ
-            const totalCostValue = calculatedFee + FOOD_COST;
-
-            // --- Ergebnisse im DOM anzeigen ---
-            feeResult.textContent = formatPrice(calculatedFee);
-            totalCost.textContent = formatPrice(totalCostValue);
-            feeExplanation.innerHTML = explanationText;
-
-            // Link zur Beitragsentlastung ein-/ausblenden (nur für Krippe U3 relevant)
-            if (childAgeType === 'krippe' && showEntlastungsInfo) {
-                entlastungsLink.classList.remove('hidden');
-            } else {
-                entlastungsLink.classList.add('hidden');
-            }
-
-            // Ergebnisbereich sichtbar machen und hinscrollen
-            resultSection.classList.remove('hidden');
-            // Nur scrollen, wenn der Button geklickt wurde oder sich ein relevanter Wert geändert hat?
-            // Vorerst bei jeder Neuberechnung scrollen:
-            resultSection.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-        }
-
-        // --- Event-Listener ---
-
-        // Funktion, die bei Änderung des Kindesalters ausgeführt wird
-        function handleChildAgeChange() {
-            // Berechne immer neu, da die Logik komplett vom Alter abhängt
-            calculateFee();
-        }
-
-        // Event-Listener hinzufügen
-        calculateButton.addEventListener('click', calculateFee);
-        childAgeSelect.addEventListener('change', handleChildAgeChange);
-        // Live-Neuberechnung bei Änderung der anderen Felder
-        netIncomeInput.addEventListener('input', calculateFee);
-        siblingsSelect.addEventListener('change', calculateFee);
-        careHoursSelect.addEventListener('change', calculateFee);
-
-        // --- Initialisierung ---
-        foodCostDisplay.textContent = formatPrice(FOOD_COST); // Essenskosten initial anzeigen
-        calculateFee(); // Initialberechnung beim Laden der Seite
-
-    }); // Ende DOMContentLoaded
-</script>
+<script src="{{ '/assets/js/beitragsrechner.js' | relative_url }}"></script>
