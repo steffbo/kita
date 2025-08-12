@@ -1,59 +1,49 @@
 events:
-  - label: "Brückentag (1. Mai)"
+  - label: Brückentag (1. Mai)
     type: closure
     start: 2025-05-02
-
-  - label: "Brückentag (Himmelfahrt)"
+  - label: Brückentag (Himmelfahrt)
     type: closure
     start: 2025-05-30
-
-  - label: "Sommerschließwoche"
+  - label: Sommerschließwoche
     type: closure
     start: 2025-07-28
     end: 2025-08-01
-
-  - label: "Bildungstag"
+  - label: Bildungstag
     type: closure
     start: 2025-10-17
-
-  - label: "Weihnachtsferien"
+  - label: Weihnachtsferien
     type: closure
     start: 2025-12-22
     end: 2026-01-02
-
-  # Beispiel für besonderen Anlass (kein geschlossen):
-  - label: "Elternkennenlerncafé"
+  - label: Elternkennenlerncafé
     type: event
     start: 2025-09-10
-
-  - label: "Elternversammlung"
+  - label: Elternversammlung
     type: event
     start: 2025-10-15
-
-  - label: "Mitgliederversammlung"
+  - label: Mitgliederversammlung
     type: event
     start: 2025-10-15
-
-  - label: "Busfahrt"
+  - label: Busfahrt
     type: festivity
     start: 2025-09-16
-
-  - label: "Herbstfest (vormittags)"
+  - label: Herbstfest (vormittags)
     type: festivity
     start: 2025-10-09
-
-  - label: "Lichterfest"
+  - label: Lichterfest
     type: festivity
     start: 2025-11-13
-
-  - label: "Adventssingen"
+  - label: Adventssingen
     type: festivity
     start: 2025-12-05
-
-  - label: "Team-Weihnachtsfeier"
+  - label: Team-Weihnachtsfeier
     type: festivity
     start: 2025-12-12
-
-  - label: "Kinder-Weihnachtsfeier"
+  - label: Kinder-Weihnachtsfeier
     type: festivity
     start: 2025-12-15
+  - type: event
+    label: Test
+    start: 2025-11-28
+    end: ""
