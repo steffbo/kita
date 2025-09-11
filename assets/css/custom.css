@@ -278,3 +278,42 @@ footer p {
 #closures-calendar .pill.closure{ background:#ffd1d1; border:1px solid #ffb4b4; }
 #closures-calendar .pill.festivity{ background:#ccebd7; border:1px solid #9ad9b7; }
 #closures-calendar .pill.event{ background:#d6e8ff; border:1px solid #a9c8ff; }
+
+/* Banner: Offene Kita-Plätze Hinweis (nur Startseite) */
+.open-places-banner{
+  display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:18px;
+  background: linear-gradient(90deg, var(--brand-600) 0%, #5d9847 100%);
+  color:#fff;
+  padding: 14px 22px;
+  border-radius: 16px;
+  margin: 96px 0 30px; /* Abstand unter fixer Navbar */
+  box-shadow: var(--shadow);
+  position: relative;
+  isolation: isolate;
+}
+.open-places-banner .text{ font-weight:700; font-size:1.15rem; letter-spacing:.3px; }
+.open-places-banner .btn-apply{
+  background:#fff; color: var(--ink-700);
+  font-weight:700; text-decoration:none;
+  padding:10px 24px; border-radius:999px; line-height:1.1;
+  box-shadow:0 2px 4px rgba(0,0,0,.15);
+  transition: background .2s, transform .2s, box-shadow .2s;
+  white-space:nowrap;
+}
+.open-places-banner .btn-apply:hover,
+.open-places-banner .btn-apply:focus{
+  background: var(--brand-50);
+  outline:0; text-decoration:none; transform: translateY(-2px);
+  box-shadow:0 4px 10px rgba(0,0,0,.25);
+}
+.open-places-banner .btn-apply:active{ transform: translateY(0); box-shadow:0 2px 4px rgba(0,0,0,.2); }
+
+@media (max-width: 768px){
+  .open-places-banner{ margin-top: 82px; font-size: .95rem; }
+  .open-places-banner .text{ font-size:1.05rem; flex:1 1 100%; }
+}
+
+@media (max-width:480px){
+  .open-places-banner{ padding:12px 16px; gap:14px; }
+  .open-places-banner .btn-apply{ width:100%; text-align:center; }
+}
