@@ -20,8 +20,9 @@ events:
     label: Bildungstag
     start: 2026-01-23
   - type: closure
-    label: Brückentag
-    start: 2025-05-15
+    label: Himmelfahrt + Brückentag
+    start: 2026-05-14
+    end: 2026-05-15
   - type: closure
     label: Sommerschließzeit
     start: 2026-07-13
