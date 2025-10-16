@@ -3,7 +3,7 @@ command = "bundle exec jekyll build"
 publish = "_site"
 
 [build.environment]
-RUBY_VERSION = "3.4.5"
+RUBY_VERSION = "3.4.7"
 
 [[redirects]]
   from = "/*"  # Erfasst alle Pfade der Subdomain

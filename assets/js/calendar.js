@@ -56,7 +56,15 @@
   const prev = document.createElement('button'); prev.type='button'; prev.className='cal-nav prev'; prev.setAttribute('aria-label','Vorheriger Monat'); prev.textContent='‹';
   const todayBtn = document.createElement('button'); todayBtn.type='button'; todayBtn.className='cal-nav today'; todayBtn.setAttribute('aria-label','Zum heutigen Monat springen'); todayBtn.textContent='Heute';
   const next = document.createElement('button'); next.type='button'; next.className='cal-nav next'; next.setAttribute('aria-label','Nächster Monat'); next.textContent='›';
-  navGroup.append(prev, todayBtn, next);
+
+  // Listen-Icon Link
+  const listLink = document.createElement('a');
+  listLink.href = '/kalender/';
+  listLink.className = 'cal-list-link';
+  listLink.setAttribute('aria-label', 'Zur Listenansicht');
+  listLink.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>';
+
+  navGroup.append(prev, todayBtn, next, listLink);
   header.append(title, navGroup);
 
     const grid = document.createElement('div'); grid.className='cal-grid';
