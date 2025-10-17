@@ -154,7 +154,6 @@ PLATFORMS
   arm-linux-musl
   arm-linux-musleabihf
   arm64-darwin
-  arm64-darwin-25
   riscv64-linux-android
   riscv64-linux-gnu
   riscv64-linux-musl
@@ -173,7 +172,7 @@ DEPENDENCIES
   logger
 
 RUBY VERSION
-   ruby 3.3.6p108
+   ruby 3.4.5p51
 
 BUNDLED WITH
-   2.7.2
+   2.6.9

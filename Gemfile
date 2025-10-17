@@ -1,6 +1,6 @@
 source "https://rubygems.org"
-ruby "3.3.6"
-#gem "github-pages", group: :jekyll_plugins
+ruby "3.4.5"
+
 gem "beautiful-jekyll-theme", "= 6.0.1"
 gem 'logger'
 gem 'csv'
