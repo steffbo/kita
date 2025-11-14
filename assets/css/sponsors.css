@@ -1,0 +1,138 @@
+/* Sponsoren Seite Styling */
+
+.sponsors-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 2rem;
+  margin: 2rem 0;
+}
+
+.sponsor-card {
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 1.5rem;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.sponsor-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.sponsor-logo {
+  text-align: center;
+  padding: 1rem;
+  background-color: #f9f9f9;
+  border-radius: 4px;
+  min-height: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sponsor-logo img {
+  max-width: 100%;
+  max-height: 100px;
+  object-fit: contain;
+}
+
+.sponsor-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.sponsor-name {
+  font-size: 1.5rem;
+  margin: 0;
+  color: #333;
+}
+
+.sponsor-name a {
+  color: #333;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.sponsor-name a:hover {
+  color: #007bff;
+}
+
+.sponsor-description {
+  color: #666;
+  line-height: 1.6;
+  margin: 0;
+}
+
+.sponsor-support {
+  padding: 0.75rem;
+  background-color: #f0f8ff;
+  border-left: 3px solid #007bff;
+  border-radius: 4px;
+  font-size: 0.95rem;
+}
+
+.sponsor-support strong {
+  color: #007bff;
+}
+
+.sponsor-website {
+  margin-top: auto;
+  margin-bottom: 0;
+}
+
+.sponsor-website a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #007bff;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+
+.sponsor-website a:hover {
+  color: #0056b3;
+  text-decoration: underline;
+}
+
+.no-sponsors {
+  text-align: center;
+  color: #999;
+  font-style: italic;
+  padding: 2rem;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .sponsors-container {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .sponsor-card {
+    padding: 1rem;
+  }
+
+  .sponsor-name {
+    font-size: 1.25rem;
+  }
+}
+
+/* Single column for very small screens */
+@media (max-width: 480px) {
+  .sponsor-logo {
+    min-height: 80px;
+  }
+
+  .sponsor-logo img {
+    max-height: 80px;
+  }
+}
+

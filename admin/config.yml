@@ -49,6 +49,26 @@ collections:
       - {label: 'Veröffentlichungsdatum', name: 'date', widget: 'datetime'}
       - {label: 'Inhalt', name: 'body', widget: 'markdown'}
 
+  - name: 'sponsors'
+    label: 'Sponsoren'
+    delete: false
+    editor:
+      preview: false
+    files:
+      - name: 'sponsors'
+        label: 'Sponsoren'
+        file: '_data/sponsors.yml'
+        fields:
+          - label: 'Sponsoren'
+            name: 'sponsors'
+            widget: 'list'
+            fields:
+              - { label: 'Name', name: 'name', widget: 'string', hint: 'Name des Sponsors' }
+              - { label: 'Logo', name: 'logo', widget: 'image', required: false, hint: 'Logo des Sponsors (empfohlen: max. 500x200px)', media_folder: '/assets/img/sponsors', public_folder: '/assets/img/sponsors' }
+              - { label: 'Beschreibung', name: 'description', widget: 'text', required: false, hint: 'Kurze Beschreibung des Sponsors (1-2 Sätze)' }
+              - { label: 'Website', name: 'website', widget: 'string', required: false, hint: 'URL zur Website des Sponsors (z.B. https://www.beispiel.de)' }
+              - { label: 'Unterstützung', name: 'support', widget: 'text', required: false, hint: 'Wie hat der Sponsor die Kita unterstützt? (z.B. "Finanzierung des Spielplatzes 2024")' }
+
   - name: 'events'
     label: 'Kalender-Einträge'
     delete: false
