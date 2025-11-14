@@ -37,6 +37,23 @@ footer p {
   margin: 0;
 }
 
+a.navbar-brand {
+  position: relative;
+  left: 80px;
+}
+
+@media (min-width: 1200px) {
+  a.navbar-brand {
+    position: relative;
+    left: 100px;
+  }
+}
+
+.navbar-custom .avatar-container {
+  position: absolute;
+  left: 60px;
+}
+
 /* Farbvariablen global, damit auch die Sidebar sie erbt */
 :root{
   /* Farbwelt */
