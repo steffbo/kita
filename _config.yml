@@ -37,6 +37,7 @@ defaults:
 
 site-css:
   - /assets/css/custom.css
+  - /assets/css/sponsors.css
 
 include:
   - _pages
