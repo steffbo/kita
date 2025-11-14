@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Unser Team
+title: Team
 permalink: /team/
 menu-order: 2
 ---

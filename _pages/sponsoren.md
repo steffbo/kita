@@ -1,8 +1,8 @@
 ---
 layout: page
-title: Unsere Sponsoren
+title: Sponsoren
 permalink: /sponsoren/
-menu-order: 6
+menu-order: -1
 ---
 
 Wir danken unseren Sponsoren für ihre großzügige Unterstützung! Durch ihr Engagement können wir unsere Kita und die Angebote für unsere Kinder stetig verbessern.
