@@ -1,25 +1,6 @@
-# Sponsoren der Kita Knirpsenstadt
-#
-# Format:
-# - name: Name des Sponsors
-#   logo: /assets/img/sponsors/logo.png
-#   description: Kurze Beschreibung des Sponsors
-#   website: https://www.beispiel.de
-#   support: Beschreibung der Unterstützung (optional)
-#
-# Beispiel:
-# - name: "Beispiel GmbH"
-#   logo: "/assets/img/sponsors/beispiel-logo.png"
-#   description: "Ein lokales Unternehmen, das sich für Bildung engagiert."
-#   website: "https://www.beispiel.de"
-#   support: "Finanzierung des Spielplatzes 2024"
-
 sponsors:
-  # Hier können Sponsoren hinzugefügt werden
-  #
-  # Beispiel-Eintrag:
-  # - name: "Muster Firma"
-  #   logo: "/assets/img/sponsors/muster-logo.png"
-  #   description: "Beschreibung des Sponsors"
-  #   website: "https://www.beispiel.de"
-  #   support: "Hat uns bei XYZ unterstützt"
+  - name: Beispiel
+    logo: /assets/img/sponsors/gemini_generated_image_stlyk8stlyk8stly.png
+    website: remer.cc
+    description: Vorstandsmitglied Stefan testet nur mal die Sponsorenliste
+    support: Hab mal n Fritz Repeater gespendet
