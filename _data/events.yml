@@ -1,5 +1,5 @@
 events:
-  - label: "Elternkennenlerncafé"
+  - label: Elternkennenlerncafé
     type: event
     start: 2025-09-10
   - label: Elternversammlung
@@ -8,3 +8,6 @@ events:
   - label: Mitgliederversammlung
     type: event
     start: 2025-10-15
+  - type: event
+    label: Elternkennenlerncafé
+    start: 2026-09-09
