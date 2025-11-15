@@ -23,3 +23,24 @@ events:
   - type: festivity
     label: Osterhase
     start: 2026-03-25
+  - type: festivity
+    label: Kindertagsparty
+    start: 2026-06-01
+  - type: festivity
+    label: Knirpsenfest
+    start: 2026-06-17
+  - type: festivity
+    label: Oma-Opa Fest
+    start: 2026-06-19
+  - type: festivity
+    label: Große Busfahrt
+    start: 2026-09-15
+  - type: festivity
+    label: Lichterfest
+    start: 2026-11-12
+  - type: festivity
+    label: Adventssingen
+    start: 2026-12-04
+  - type: festivity
+    label: Besuch Weihnachtsmann
+    start: 2026-12-14
