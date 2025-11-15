@@ -30,6 +30,10 @@ events:
     label: Knirpsenfest
     start: 2026-06-17
   - type: festivity
+    label: Vorschulabschluss & Übernachtung
+    start: 2026-06-25
+    end: 2026-06-26
+  - type: festivity
     label: Oma-Opa Fest
     start: 2026-06-19
   - type: festivity
