@@ -2,6 +2,7 @@
 layout: page
 title: Pädagogischer Ansatz
 permalink: /paedagogischer-ansatz/
+show-badge: false
 menu-order: 1
 ---
 Unsere pädagogische Arbeit beruht auf dem Situationsansatz, d.h. unsere Kinder lernen in Realsituationen und Sinnzusammenhängen. Die Tagesgestaltung ist dadurch flexibel und nach den Bedürfnissen und Wünschen der Kinder ausgerichtet.
@@ -26,7 +27,6 @@ Die Vorbereitung auf die Schule startet mit Beginn des Kitaaufenthaltes, besonde
 ## Externe Angebote
 
 * YOGA mit der Tanzpädagogin Kerstin Ehrlich
-* SADAKO ein musikalisches Kinder- und Jugendensemble
 
 ## Standort und Einrichtung
 
