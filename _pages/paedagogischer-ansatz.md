@@ -39,5 +39,5 @@ Die Vorbereitung auf die Schule startet mit Beginn des Kitaaufenthaltes, besonde
 ## Schließzeiten
 
 * gesetzliche Feiertage im Land Brandenburg oder betriebsbedingte Anlässe mit vorheriger Abstimmung in Mitgliederversammlungen
-* eine Woche in den Sommerferien
+* zwei Wochen in den Sommerferien
 * zwischen Weihnachten und Neujahr
