@@ -17,7 +17,7 @@
             {% for page in pages_list %}
             <li class="nav-item">
                 <a class="nav-link" href="{{ page.url }}">
-                    {{ page.title }}
+                    {% if page.nav-title %}{{ page.nav-title }}{% else %}{{ page.title }}{% endif %}
                     {%- if page.show-badge -%}
                     <sup> 🔴</sup>
                     {%- endif -%}

@@ -1,16 +1,19 @@
 ---
 layout: page
-title: Sponsoren
+title: Sponsoren/Großspender
+nav-title: Sponsoren/Spender
 permalink: /sponsoren/
 show-badge: true
 menu-order: 6
 ---
 
-Wir danken unseren Sponsoren für ihre großzügige Unterstützung! Durch ihr Engagement können wir unsere Kita und die Angebote für unsere Kinder stetig verbessern.
+Wir danken unseren Sponsoren und Großspendern für ihre großzügige Unterstützung! Durch ihr Engagement können wir unsere Kita und die Angebote für unsere Kinder stetig verbessern.
 
 <div class="sponsors-container">
 {% if site.data.sponsors.sponsors.size > 0 %}
   {% for sponsor in site.data.sponsors.sponsors %}
+  {% assign desc_clean = sponsor.description | default: '' | strip %}
+  {% assign support_clean = sponsor.support | default: '' | strip %}
   <div class="sponsor-card">
     {% if sponsor.logo %}
     <div class="sponsor-logo">
@@ -25,12 +28,12 @@ Wir danken unseren Sponsoren für ihre großzügige Unterstützung! Durch ihr En
         {{ sponsor.name }}
         {% endif %}
       </h3>
-      {% if sponsor.description %}
-      <p class="sponsor-description">{{ sponsor.description }}</p>
+      {% if desc_clean != '' %}
+      <p class="sponsor-description">{{ desc_clean }}</p>
       {% endif %}
-      {% if sponsor.support %}
+      {% if support_clean != '' %}
       <div class="sponsor-support">
-        <strong>Unterstützung:</strong> {{ sponsor.support }}
+        <strong>Unterstützung:</strong> {{ support_clean }}
       </div>
       {% endif %}
       {% if sponsor.website %}
@@ -50,7 +53,6 @@ Wir danken unseren Sponsoren für ihre großzügige Unterstützung! Durch ihr En
 
 ---
 
-### Sie möchten Sponsor werden?
+### Sie möchten Sponsor oder Spender werden?
 
 Wir freuen uns über jede Form der Unterstützung! Wenn Sie die Kita Knirpsenstadt als Sponsor unterstützen möchten, nehmen Sie gerne [Kontakt](/impressum/) mit uns auf.
-

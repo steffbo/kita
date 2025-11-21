@@ -247,7 +247,7 @@ a.navbar-brand {
   background: var(--brand-50);
   border-color: var(--brand-100);
   font-weight: 700;
-  text-align:center;
+  text-align: center;
 }
 #closures-calendar .cal-pad{
   background: transparent;
